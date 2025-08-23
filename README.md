@@ -1,9 +1,7 @@
 # Django Karar Ağacı — Mermaid Mindmap (v1.5)
 
-Bu dosya v1.5 karar ağacını Mermaid mindmap formatında sunar. GitHub README içine bu dosyanın içindeki `mermaid` bloğunu yapıştırırsanız (ve GitHub mermaid desteği açıksa) hiyerarşik zihin haritası görüntülenecektir.
 
-Not: Çok büyük ağaçlar için görsellik karışabilir — istersen bölümlere ayırıp her bölüm için ayrı mermaid bloğu üretebilirim.
-```
+
 
 ```mermaid
 mindmap
