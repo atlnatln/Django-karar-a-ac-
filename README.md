@@ -1,275 +1,979 @@
-# Django Karar Ağacı — Mermaid Mindmap (v1.5)
-
-
-
-
-```mermaid
-mindmap
-  root(("Django Ekosistemi - Birleştirilmiş Genişletilmiş Karar Ağacı (v1.5)"))
-    1. Başlangıç: Proje Kurulumu
-      Cookiecutter vs custom repo template
-      Virtualenv / pyenv / poetry / pipenv
-      Monorepo vs Polyrepo
-      Repo structure conventions (apps/, config/, infra/)
-      Environment strategy: dev/staging/prod
-      Project README, CONTRIBUTING, LICENSE
-    2. Proje Tipi / Mimari
-      Monolith
-        Single Django project, multiple apps
-        Simple deploy (single image or VPS)
-        Small teams, low ops overhead
-      API + Frontend Ayrı
-        Django REST Framework (DRF) or GraphQL
-        Frontend: Next.js / React / Vue / Svelte
-        Contract-first (OpenAPI) + mock server (Prism/MSW)
-        BFF (Backend for Frontend) pattern
-      Microservices
-        Domain-separated services
-        Service discovery, messaging, distributed tracing
-        Event sourcing / CQRS
-      CMS Tabanlı
-        Wagtail / Django CMS / Mezzanine
-        Custom integrations vs headless CMS
-    3. Veri Katmanı
-      Relational DB
-        PostgreSQL
-          Django ORM migrations
-          Backup: pg_dump, WAL archiving, cloud snapshots
-          Connection pooling: pgbouncer
-          High availability: streaming replication
-          Read replicas + load balancing
-        MySQL / MariaDB
-          Django ORM migrations
-          Replication seçenekleri
-        Oracle / MSSQL (kurumsal ihtiyaç)
-      SQLite
-        Local dev / tests
-        Not for prod
-      NoSQL & Search
-        MongoDB (document store)
-        Redis as primary (rare)
-        Elasticsearch / OpenSearch (search & analytics)
-        Full-text search: Postgres tsvector vs ES
-      Time-series & Analytical
-        ClickHouse / Timescale / BigQuery
-        Data warehouse integration (Snowflake, Redshift)
-      Data streaming
-        Kafka / Redpanda
-        CDC (Change Data Capture)
-      Access patterns
-        Read-heavy vs write-heavy
-        Outbox pattern + ES reindex
-    4. API & Entegrasyon Stilleri
-      REST (DRF)
-        ViewSets, Routers, Pagination, Throttling
-        OpenAPI / Swagger auto-doc
-        Versioning (url/header)
-      GraphQL
-        Graphene / Ariadne
-        Query complexity limits, persisted queries
-      gRPC / Protobuf
-        Internal services, typed contracts
-      Webhook & Event-driven
-        Delivery retry, signing, idempotency
-    5. Kimlik Doğrulama & Yetkilendirme
-      Built-in Django Auth
-        AbstractUser / AbstractBaseUser customization
-        Admin, password reset, email confirmation
-      Token / JWT
-        DRF SimpleJWT or custom implementation
-        Refresh tokens, blacklisting, rotation
-      OAuth2 / Social Login
-        django-allauth / Authlib / django-oauth-toolkit
-        SSO (Okta, Keycloak)
-      Permission Models
-        Object level permissions (django-guardian)
-        Role-based vs claim-based
-    6. Önbellek & Asenkron İşler
-      Cache
-        Redis
-        Memcached
-        Cache strategies: per-view, per-object, template fragment
-      Task Queue
-        Celery (broker: Redis/RabbitMQ)
-        Dramatiq
-        Huey
-        Task design: idempotency, retry, circuit-breaker
-      Background jobs
-        Scheduled tasks (Celery Beat, cron, Airflow)
-        Event-driven pipelines
-    7. Depolama / Media / Asset Yönetimi
-      Local FS (dev)
-      S3 / MinIO / GCP Storage / Azure Blob
-      django-storages integration
-      Signed URLs, upload direct to S3
-      CDN (CloudFront, Cloudflare, Fastly)
-    8. Gerçek Zamanlı İletişim
-      Django Channels
-        WebSockets, ASGI setup, Redis layer
-      Server-Sent Events / Webhooks
-        Use cases: notifications, streams
-      Realtime alternatives
-        Pusher / Ably / Firebase / MQTT
-    9. Frontend Entegrasyonu
-      Server-side rendered
-        Django templates (classic)
-        Next.js SSR integrated with API
-      Single Page App
-        React / Vue / Svelte with API
-        State management, SWR/react-query
-      Static site / Jamstack
-        SSG on build, CDN hosting
-    10. Test & Kalite Güvencesi
-      Unit tests
-        pytest-django / unittest
-      Integration tests
-        DB fixtures, testcontainers
-      Contract tests
-        Pact / contract verification
-      E2E
-        Cypress / Playwright
-      Static analysis
-        flake8 / pylint / mypy / black
-      Security tests
-        Dependency scan (Snyk), SAST
-    11. Geliştirme Deneyimi (Local DX)
-      docker-compose: db, redis, backend, frontend
-      makefile / scripts for common tasks
-      .env.example, env var strategy
-      Local mocks (MSW, Prism) for contract-first
-      Hot reload, debug toolbar
-      Pre-commit hooks
-    12. CI / CD
-      CI pipelines
-        Lint → Test → Build → Security checks
-        Contract verification job (Pact/OpenAPI)
-        Auto-generated clients from OpenAPI
-      CD strategies
-        Image registry (ECR/GCR/Docker Hub)
-        K8s rollout (blue/green, canary)
-        Feature flags
-    13. Deploy & Infra
-      Simple VPS
-        Gunicorn + Nginx, systemd
-        Let's Encrypt
-      Container-first
-        Dockerfile multi-stage, image scanning
-        docker-compose for dev
-      Container orchestration
-        Kubernetes (Helm charts, ingress, autoscaling)
-        Service mesh optional
-      Managed / PaaS
-        Heroku, Railway, Render, Elastic Beanstalk
-      Edge deployments
-        Cloudflare Workers, Vercel, Netlify (hybrid with Django)
-    14. Monitoring / Logging / Tracing
-      Sentry (errors)
-      Prometheus + Grafana (metrics)
-      OpenTelemetry / Jaeger (tracing)
-      ELK / EFK stack for logs
-      Health checks & readiness / liveness
-      Business metrics dashboards
-    15. Security & Compliance
-      OWASP top 10 mitigations
-      CSP, HSTS, X-Frame-Options, secure cookies
-      Rate limiting (throttling)
-      Secret management (Vault / cloud KMS)
-      GDPR / data retention & export
-      Penetration testing
-      Threat modeling (STRIDE), security review gates
-      Secret rotation & key lifecycle (KMS, age, rotation policy)
-    16. Performans & Ölçeklendirme
-      DB indexing, query optimization
-      Caching layer (Redis), CDN
-      Horizontal scaling: multiple app instances
-      Load balancing (nginx/ingress/ELB)
-      Profiling (django-silk, py-spy)
-      Async views for IO heavy endpoints
-    17. Packaging, Release & Versioning
-      Semantic versioning
-      Changelog generation
-      Migration management and backward-compatible DB changes
-      Release branches, hotfix process
-      Dependency pinning and Renovate bot
-    18. Popüler Django Eklentileri / Ready-made Apps
-      django-allauth
-      Wagtail / Django CMS
-      Django Oscar (e-commerce)
-      django-rest-framework (DRF)
-      django-channels
-      django-storages
-      django-guardian
-      django-haystack (search)
-      django-cors-headers
-    19. Team & Process
-      ADR (Architecture Decision Records)
-      Code ownership, CODEOWNERS
-      Branching model (gitflow/trunk-based)
-      RFCs, design reviews
-      Pair programming, mob sessions
-      Agile vs Kanban vs Shape Up
-    20. Data Science & AI Entegrasyonu
-      ML models serving (Django + TensorFlow/PyTorch)
-      Feature stores
-      Data pipelines (Airflow, Prefect)
-      Realtime inference with Celery or gRPC
-      Vector DB integration (Pinecone, Weaviate)
-    21. Diğer / Özel Gereksinimler
-      Multi-tenancy
-      Data migrations (complex transformation)
-      Analytics & events pipeline
-      Feature flags / experimentation
-      Domain-driven design
-    22. E-posta & Bildirim Altyapısı
-      Email providers: SMTP, Postmark/Sendgrid
-      Templating: django-templated-email, MJML
-      Push: Web Push, FCM/APNs
-      In-app notifications & digest jobs
-    23. Ödemeler & Faturalama
-      Stripe / Iyzico / PayPal entegrasyonu
-      Abonelikler, metered billing, webhooks
-      Vergi, iade, sahtekârlık önleme
-    24. Uluslararasılaştırma & Erişilebilirlik
-      i18n/l10n: django-rosetta, gettext
-      Timezone & para birimi
-      WCAG, ARIA, klavye navigasyonu
-    25. Veri Yönetişimi & Gizlilik
-      PII sınıflandırma, minimizasyon
-      Audit logging (kim, ne zaman, ne yaptı)
-      Data retention/erasure, DPO süreçleri
-      Data catalog & lineage (OpenMetadata)
-    26. Tedarik Zinciri Güvenliği
-      SBOM (CycloneDX), Dependabot/Renovate
-      İmzalı container imajları (cosign)
-      Pinned hashes, pip-tools/poetry lock
-    27. IaC, Dayanıklılık & Felaket Kurtarma
-      Terraform/Ansible, değişiklik onay akışları
-      Backup/restore runbook, RPO/RTO hedefleri
-      Multi-AZ/region, chaos testing
-    28. Maliyet & FinOps
-      Kaynak etiketleme, showback/chargeback
-      Autoscaling eşikleri, kapasite planlama
-      CDN/egress optimizasyonu
-    29. Arama & Alaka Düzeyi
-      Synonym/typo toleransı
-      Sıralama, boosting, A/B
-      ES/OpenSearch tune, Postgres FTS
-    30. Mobil/Masaüstü İstemciler
-      React Native/Flutter entegrasyonu
-      Offline-first, delta sync
-      Deep link, app auth akışları
-    31. Sıfır Kesinti Değişiklikler
-      Backfill → dual write → flip → cleanup
-      Blue/green + veritabanı şeması evrimi
-      Feature flag ile kademeli açılış
-    32. Karar Kriterleri
-      Ekip yetkinliği, işe alım piyasası
-      Regülasyon/uyum gereksinimleri (KVKK/GDPR/PCI)
-      SLO/SLA hedefleri (availability, latency)
-      Bütçe ve operasyon olgunluğu
-    33. Antipatterns & Kokular
-      Erken mikroservisleşme
-      Aşırı genel cache (stale data, invalidation yok)
-      Şemasız eventler (versiyonlama yok)
-      Gizli bilgileri .env yerine repo’ya koymak
-```
+root: "Django Ekosistemi - Birleştirilmiş Karar Ağacı"
+meta:
+  author: "atlnatln"
+  generated_at: "2025-08-23"
+  version: "1.5"
+default_attributes:
+  impact: "med"
+  cost: "$$"
+  complexity: "medium"
+  risk: "med"
+attributes:
+  scales:
+    impact: ["low", "med", "high"]
+    cost: ["$", "$$", "$$$"]
+    complexity: ["easy", "medium", "hard"]
+    risk: ["low", "med", "high"]
+scoring:
+  # Basit kural seti: normalized numeric mapping
+  mappings:
+    impact: { low: 1, med: 2, high: 3 }
+    cost: { $: 1, $$: 2, $$$: 3 }
+    complexity: { easy: 1, medium: 2, hard: 3 }
+    risk: { low: 1, med: 2, high: 3 }
+  weights:
+    impact: 0.4
+    cost: 0.2
+    complexity: 0.2
+    risk: 0.2
+  formula: "score = sum(mappings[attr] * weights[attr]) normalized"
+  note: "Toplam score seçilen path'teki tüm node'ların ağırlıklı ortalaması alınarak hesaplanır."
+nodes:
+  - id: project_setup
+    label: "1. Başlangıç: Proje Kurulumu"
+    type: category
+    tags: [process, repo]
+    attributes: { impact: "med" }
+    children:
+      - id: project_setup_cookiecutter
+        label: "Cookiecutter vs custom repo template"
+        type: leaf
+        tags: [devdx]
+      - id: project_setup_pythonenv
+        label: "Virtualenv / pyenv / poetry / pipenv"
+        type: leaf
+        tags: [devdx]
+      - id: project_setup_repo_style
+        label: "Monorepo vs Polyrepo"
+        type: leaf
+        tags: [process]
+      - id: project_setup_structure
+        label: "Repo structure conventions (apps/, config/, infra/)"
+        type: leaf
+        tags: [process, infra]
+      - id: project_setup_env_strategy
+        label: "Environment strategy: dev/staging/prod"
+        type: leaf
+        tags: [infra, ops]
+      - id: project_setup_docs
+        label: "Project README, CONTRIBUTING, LICENSE"
+        type: leaf
+        tags: [process]
+  - id: project_type
+    label: "2. Proje Tipi / Mimari"
+    type: category
+    tags: [architecture]
+    children:
+      - id: proj_monolith
+        label: "Monolith"
+        type: choice
+        attributes: { impact: "med", cost: "$", complexity: "easy", risk: "low" }
+        tags: [architecture]
+        children:
+          - id: monolith_single_project
+            label: "Single Django project, multiple apps"
+            type: leaf
+            tags: [architecture]
+          - id: monolith_simple_deploy
+            label: "Simple deploy (single image or VPS)"
+            type: leaf
+            tags: [infra]
+      - id: proj_api_frontend
+        label: "API + Frontend Ayrı"
+        type: choice
+        attributes: { impact: "high", cost: "$$", complexity: "medium", risk: "med" }
+        tags: [architecture, frontend]
+        children:
+          - id: apift_drfgql
+            label: "Django REST Framework (DRF) or GraphQL"
+            type: leaf
+            tags: [api]
+          - id: apift_frontend_stack
+            label: "Frontend: Next.js / React / Vue / Svelte"
+            type: leaf
+            tags: [frontend]
+          - id: apift_contract_first
+            label: "Contract-first (OpenAPI) + mock server (Prism/MSW)"
+            type: leaf
+            tags: [api, testing]
+          - id: apift_bff
+            label: "BFF (Backend for Frontend) pattern"
+            type: leaf
+            tags: [architecture]
+      - id: proj_microservices
+        label: "Microservices"
+        type: choice
+        attributes: { impact: "high", cost: "$$$", complexity: "hard", risk: "high" }
+        tags: [architecture, ops]
+        children:
+          - id: micro_domain_sep
+            label: "Domain-separated services"
+            type: leaf
+            tags: [architecture]
+          - id: micro_service_mesh
+            label: "Service discovery, messaging, distributed tracing"
+            type: leaf
+            tags: [infra, observability]
+          - id: micro_event_sourcing
+            label: "Event sourcing / CQRS"
+            type: leaf
+            tags: [architecture, data]
+      - id: proj_cms
+        label: "CMS Tabanlı"
+        type: choice
+        tags: [cms]
+        children:
+          - id: cms_wagtail
+            label: "Wagtail / Django CMS / Mezzanine"
+            type: leaf
+            tags: [cms]
+          - id: cms_headless
+            label: "Custom integrations vs headless CMS"
+            type: leaf
+            tags: [cms, api]
+  - id: data_layer
+    label: "3. Veri Katmanı"
+    type: category
+    tags: [data]
+    children:
+      - id: data_relational
+        label: "Relational DB"
+        type: choice
+        children:
+          - id: data_postgres
+            label: "PostgreSQL"
+            type: choice
+            tags: [db]
+            children:
+              - id: data_postgres_migrations
+                label: "Django ORM migrations"
+                type: leaf
+                tags: [devops]
+              - id: data_postgres_backup
+                label: "Backup: pg_dump, WAL archiving, cloud snapshots"
+                type: leaf
+                tags: [ops]
+              - id: data_postgres_pool
+                label: "Connection pooling: pgbouncer"
+                type: leaf
+                tags: [ops]
+              - id: data_postgres_ha
+                label: "High availability: streaming replication"
+                type: leaf
+                tags: [ops]
+              - id: data_postgres_replicas
+                label: "Read replicas + load balancing"
+                type: leaf
+                tags: [ops, scaling]
+          - id: data_mysql
+            label: "MySQL / MariaDB"
+            type: choice
+            children:
+              - id: data_mysql_migrations
+                label: "Django ORM migrations"
+                type: leaf
+                tags: [devops]
+              - id: data_mysql_replication
+                label: "Replication seçenekleri"
+                type: leaf
+                tags: [ops]
+          - id: data_oracle_mssql
+            label: "Oracle / MSSQL (kurumsal ihtiyaç)"
+            type: leaf
+            tags: [db]
+      - id: data_sqlite
+        label: "SQLite"
+        type: leaf
+        tags: [devdx]
+      - id: data_nosql_search
+        label: "NoSQL & Search"
+        type: choice
+        children:
+          - id: data_mongodb
+            label: "MongoDB (document store)"
+            type: leaf
+            tags: [data]
+          - id: data_redis_primary
+            label: "Redis as primary (rare)"
+            type: leaf
+            tags: [cache]
+          - id: data_elastic
+            label: "Elasticsearch / OpenSearch (search & analytics)"
+            type: leaf
+            tags: [search]
+          - id: data_fulltext
+            label: "Full-text search: Postgres tsvector vs ES"
+            type: leaf
+            tags: [search]
+      - id: data_timeseries
+        label: "Time-series & Analytical"
+        type: choice
+        children:
+          - id: data_clickhouse
+            label: "ClickHouse / Timescale / BigQuery"
+            type: leaf
+            tags: [analytics]
+          - id: data_warehouse
+            label: "Data warehouse integration (Snowflake, Redshift)"
+            type: leaf
+            tags: [analytics]
+      - id: data_streaming
+        label: "Data streaming"
+        type: choice
+        children:
+          - id: data_kafka
+            label: "Kafka / Redpanda"
+            type: leaf
+            tags: [streaming]
+          - id: data_cdc
+            label: "CDC (Change Data Capture)"
+            type: leaf
+            tags: [data]
+      - id: data_access_patterns
+        label: "Access patterns"
+        type: choice
+        children:
+          - id: access_read_write
+            label: "Read-heavy vs write-heavy"
+            type: leaf
+            tags: [design]
+          - id: access_outbox
+            label: "Outbox pattern + ES reindex"
+            type: leaf
+            tags: [data, search]
+  - id: api_style
+    label: "4. API & Entegrasyon Stilleri"
+    type: category
+    tags: [api]
+    children:
+      - id: api_rest
+        label: "REST (DRF)"
+        type: choice
+        children:
+          - id: api_rest_viewsets
+            label: "ViewSets, Routers, Pagination, Throttling"
+            type: leaf
+            tags: [api, best_practice]
+          - id: api_rest_openapi
+            label: "OpenAPI / Swagger auto-doc"
+            type: leaf
+            tags: [api, docs]
+          - id: api_rest_versioning
+            label: "Versioning (url/header)"
+            type: leaf
+            tags: [api]
+      - id: api_graphql
+        label: "GraphQL"
+        type: choice
+        children:
+          - id: api_graphene
+            label: "Graphene / Ariadne"
+            type: leaf
+            tags: [api]
+          - id: api_graphql_limits
+            label: "Query complexity limits, persisted queries"
+            type: leaf
+            tags: [api, security]
+      - id: api_grpc
+        label: "gRPC / Protobuf"
+        type: leaf
+        tags: [internal]
+      - id: api_webhook
+        label: "Webhook & Event-driven"
+        type: leaf
+        tags: [events]
+  - id: auth
+    label: "5. Kimlik Doğrulama & Yetkilendirme"
+    type: category
+    tags: [security]
+    children:
+      - id: auth_builtin
+        label: "Built-in Django Auth"
+        type: choice
+        children:
+          - id: auth_builtin_abstract
+            label: "AbstractUser / AbstractBaseUser customization"
+            type: leaf
+            tags: [dev]
+          - id: auth_builtin_admin
+            label: "Admin, password reset, email confirmation"
+            type: leaf
+            tags: [ux, security]
+      - id: auth_jwt
+        label: "Token / JWT"
+        type: choice
+        children:
+          - id: auth_jwt_simplejwt
+            label: "DRF SimpleJWT or custom implementation"
+            type: leaf
+            tags: [security]
+          - id: auth_jwt_refresh
+            label: "Refresh tokens, blacklisting, rotation"
+            type: leaf
+            tags: [security]
+      - id: auth_oauth
+        label: "OAuth2 / Social Login"
+        type: choice
+        children:
+          - id: auth_oauth_libs
+            label: "django-allauth / Authlib / django-oauth-toolkit"
+            type: leaf
+            tags: [integration]
+          - id: auth_oauth_sso
+            label: "SSO (Okta, Keycloak)"
+            type: leaf
+            tags: [enterprise]
+      - id: auth_perm_models
+        label: "Permission Models"
+        type: choice
+        children:
+          - id: auth_perm_objlevel
+            label: "Object level permissions (django-guardian)"
+            type: leaf
+            tags: [security]
+          - id: auth_perm_roleclaim
+            label: "Role-based vs claim-based"
+            type: leaf
+            tags: [design]
+  - id: cache_async
+    label: "6. Önbellek & Asenkron İşler"
+    type: category
+    tags: [performance]
+    children:
+      - id: cache_async_cache
+        label: "Cache"
+        type: choice
+        children:
+          - id: cache_redis
+            label: "Redis"
+            type: leaf
+            tags: [cache]
+          - id: cache_memcached
+            label: "Memcached"
+            type: leaf
+            tags: [cache]
+          - id: cache_strategies
+            label: "Cache strategies: per-view, per-object, template fragment"
+            type: leaf
+            tags: [performance]
+      - id: cache_async_taskqueue
+        label: "Task Queue"
+        type: choice
+        children:
+          - id: task_celery
+            label: "Celery (broker: Redis/RabbitMQ)"
+            type: leaf
+            tags: [async]
+          - id: task_dramatiq
+            label: "Dramatiq"
+            type: leaf
+            tags: [async]
+          - id: task_huey
+            label: "Huey"
+            type: leaf
+            tags: [async]
+          - id: task_design
+            label: "Task design: idempotency, retry, circuit-breaker"
+            type: leaf
+            tags: [ops]
+      - id: cache_async_bgjobs
+        label: "Background jobs"
+        type: choice
+        children:
+          - id: bg_sched
+            label: "Scheduled tasks (Celery Beat, cron, Airflow)"
+            type: leaf
+            tags: [ops]
+          - id: bg_event_pipelines
+            label: "Event-driven pipelines"
+            type: leaf
+            tags: [data]
+  - id: storage_media
+    label: "7. Depolama / Media / Asset Yönetimi"
+    type: category
+    children:
+      - id: storage_local
+        label: "Local FS (dev)"
+        type: leaf
+      - id: storage_s3
+        label: "S3 / MinIO / GCP Storage / Azure Blob"
+        type: leaf
+        tags: [infra]
+      - id: storage_storages
+        label: "django-storages integration"
+        type: leaf
+      - id: storage_signed_urls
+        label: "Signed URLs, upload direct to S3"
+        type: leaf
+      - id: storage_cdn
+        label: "CDN (CloudFront, Cloudflare, Fastly)"
+        type: leaf
+  - id: realtime
+    label: "8. Gerçek Zamanlı İletişim"
+    type: category
+    children:
+      - id: realtime_channels
+        label: "Django Channels"
+        type: choice
+        children:
+          - id: realtime_ws_asgi
+            label: "WebSockets, ASGI setup, Redis layer"
+            type: leaf
+      - id: realtime_sse
+        label: "Server-Sent Events / Webhooks"
+        type: leaf
+      - id: realtime_alternatives
+        label: "Pusher / Ably / Firebase / MQTT"
+        type: leaf
+  - id: frontend_integration
+    label: "9. Frontend Entegrasyonu"
+    type: category
+    children:
+      - id: frontend_ssr
+        label: "Server-side rendered"
+        type: choice
+        children:
+          - id: frontend_ssr_django_templates
+            label: "Django templates (classic)"
+            type: leaf
+          - id: frontend_ssr_nextjs
+            label: "Next.js SSR integrated with API"
+            type: leaf
+      - id: frontend_spa
+        label: "Single Page App"
+        type: choice
+        children:
+          - id: frontend_spa_react
+            label: "React / Vue / Svelte with API"
+            type: leaf
+          - id: frontend_spa_state
+            label: "State management, SWR/react-query"
+            type: leaf
+      - id: frontend_jamstack
+        label: "Static site / Jamstack"
+        type: leaf
+  - id: testing_quality
+    label: "10. Test & Kalite Güvencesi"
+    type: category
+    children:
+      - id: test_unit
+        label: "Unit tests"
+        type: leaf
+        tags: [testing]
+      - id: test_integration
+        label: "Integration tests"
+        type: leaf
+        tags: [testing]
+      - id: test_contract
+        label: "Contract tests"
+        type: leaf
+        tags: [testing]
+      - id: test_e2e
+        label: "E2E"
+        type: leaf
+        tags: [testing]
+      - id: test_static_analysis
+        label: "Static analysis"
+        type: leaf
+        tags: [quality]
+      - id: test_security_tests
+        label: "Security tests"
+        type: leaf
+        tags: [security]
+  - id: dev_dx
+    label: "11. Geliştirme Deneyimi (Local DX)"
+    type: category
+    children:
+      - id: dev_dx_compose
+        label: "docker-compose: db, redis, backend, frontend"
+        type: leaf
+      - id: dev_dx_makefile
+        label: "makefile / scripts for common tasks"
+        type: leaf
+      - id: dev_dx_env
+        label: ".env.example, env var strategy"
+        type: leaf
+      - id: dev_dx_local_mocks
+        label: "Local mocks (MSW, Prism) for contract-first"
+        type: leaf
+      - id: dev_dx_hot_reload
+        label: "Hot reload, debug toolbar"
+        type: leaf
+      - id: dev_dx_precommit
+        label: "Pre-commit hooks"
+        type: leaf
+  - id: cicd
+    label: "12. CI / CD"
+    type: category
+    children:
+      - id: cicd_pipelines
+        label: "CI pipelines"
+        type: category
+        children:
+          - id: cicd_lint_test_build
+            label: "Lint → Test → Build → Security checks"
+            type: leaf
+          - id: cicd_contract_verif
+            label: "Contract verification job (Pact/OpenAPI)"
+            type: leaf
+          - id: cicd_autogen_clients
+            label: "Auto-generated clients from OpenAPI"
+            type: leaf
+      - id: cicd_cd_strategies
+        label: "CD strategies"
+        type: category
+        children:
+          - id: cicd_registry
+            label: "Image registry (ECR/GCR/Docker Hub)"
+            type: leaf
+          - id: cicd_rollout
+            label: "K8s rollout (blue/green, canary)"
+            type: leaf
+          - id: cicd_feature_flags
+            label: "Feature flags"
+            type: leaf
+  - id: deploy_infra
+    label: "13. Deploy & Infra"
+    type: category
+    children:
+      - id: deploy_vps
+        label: "Simple VPS"
+        type: category
+        children:
+          - id: deploy_vps_gunicorn
+            label: "Gunicorn + Nginx, systemd"
+            type: leaf
+          - id: deploy_vps_letsencrypt
+            label: "Let's Encrypt"
+            type: leaf
+      - id: deploy_container_first
+        label: "Container-first"
+        type: category
+        children:
+          - id: deploy_dockerfile
+            label: "Dockerfile multi-stage, image scanning"
+            type: leaf
+          - id: deploy_compose_dev
+            label: "docker-compose for dev"
+            type: leaf
+      - id: deploy_k8s
+        label: "Container orchestration"
+        type: category
+        children:
+          - id: deploy_k8s_helm
+            label: "Kubernetes (Helm charts, ingress, autoscaling)"
+            type: leaf
+          - id: deploy_k8s_mesh
+            label: "Service mesh optional"
+            type: leaf
+      - id: deploy_paas
+        label: "Managed / PaaS"
+        type: leaf
+      - id: deploy_edge
+        label: "Edge deployments"
+        type: leaf
+  - id: observability
+    label: "14. Monitoring / Logging / Tracing"
+    type: category
+    children:
+      - id: obs_sentry
+        label: "Sentry (errors)"
+        type: leaf
+      - id: obs_prometheus
+        label: "Prometheus + Grafana (metrics)"
+        type: leaf
+      - id: obs_tracing
+        label: "OpenTelemetry / Jaeger (tracing)"
+        type: leaf
+      - id: obs_elk
+        label: "ELK / EFK stack for logs"
+        type: leaf
+      - id: obs_healthchecks
+        label: "Health checks & readiness / liveness"
+        type: leaf
+      - id: obs_business_metrics
+        label: "Business metrics dashboards"
+        type: leaf
+  - id: security_compliance
+    label: "15. Security & Compliance"
+    type: category
+    attributes: { impact: "high", cost: "$$", complexity: "medium", risk: "high" }
+    tags: [security]
+    children:
+      - id: sec_owasp
+        label: "OWASP top 10 mitigations"
+        type: leaf
+      - id: sec_headers
+        label: "CSP, HSTS, X-Frame-Options, secure cookies"
+        type: leaf
+      - id: sec_rate_limiting
+        label: "Rate limiting (throttling)"
+        type: leaf
+      - id: sec_secret_mgmt
+        label: "Secret management (Vault / cloud KMS)"
+        type: leaf
+      - id: sec_gdpr
+        label: "GDPR / data retention & export"
+        type: leaf
+      - id: sec_pen_test
+        label: "Penetration testing"
+        type: leaf
+      - id: sec_threat_model
+        label: "Threat modeling (STRIDE), security review gates"
+        type: leaf
+      - id: sec_secret_rotation
+        label: "Secret rotation & key lifecycle (KMS, age, rotation policy)"
+        type: leaf
+  - id: performance_scaling
+    label: "16. Performans & Ölçeklendirme"
+    type: category
+    children:
+      - id: perf_db_index
+        label: "DB indexing, query optimization"
+        type: leaf
+      - id: perf_cache_cdn
+        label: "Caching layer (Redis), CDN"
+        type: leaf
+      - id: perf_horizontal
+        label: "Horizontal scaling: multiple app instances"
+        type: leaf
+      - id: perf_load_balancing
+        label: "Load balancing (nginx/ingress/ELB)"
+        type: leaf
+      - id: perf_profiling
+        label: "Profiling (django-silk, py-spy)"
+        type: leaf
+      - id: perf_async_views
+        label: "Async views for IO heavy endpoints"
+        type: leaf
+  - id: packaging_release
+    label: "17. Packaging, Release & Versioning"
+    type: category
+    children:
+      - id: pkg_semver
+        label: "Semantic versioning"
+        type: leaf
+      - id: pkg_changelog
+        label: "Changelog generation"
+        type: leaf
+      - id: pkg_migrations
+        label: "Migration management and backward-compatible DB changes"
+        type: leaf
+      - id: pkg_release_branches
+        label: "Release branches, hotfix process"
+        type: leaf
+      - id: pkg_renovate
+        label: "Dependency pinning and Renovate bot"
+        type: leaf
+  - id: ecosystem_apps
+    label: "18. Popüler Django Eklentileri / Ready-made Apps"
+    type: category
+    children:
+      - id: eco_allauth
+        label: "django-allauth"
+        type: leaf
+      - id: eco_wagtail
+        label: "Wagtail / Django CMS"
+        type: leaf
+      - id: eco_oscar
+        label: "Django Oscar (e-commerce)"
+        type: leaf
+      - id: eco_drf
+        label: "django-rest-framework (DRF)"
+        type: leaf
+      - id: eco_channels
+        label: "django-channels"
+        type: leaf
+      - id: eco_storages
+        label: "django-storages"
+        type: leaf
+      - id: eco_guardian
+        label: "django-guardian"
+        type: leaf
+      - id: eco_haystack
+        label: "django-haystack (search)"
+        type: leaf
+      - id: eco_cors
+        label: "django-cors-headers"
+        type: leaf
+  - id: team_processes
+    label: "19. Team & Process"
+    type: category
+    children:
+      - id: team_adr
+        label: "ADR (Architecture Decision Records)"
+        type: leaf
+      - id: team_codeowners
+        label: "Code ownership, CODEOWNERS"
+        type: leaf
+      - id: team_branching
+        label: "Branching model (gitflow/trunk-based)"
+        type: leaf
+      - id: team_rfc
+        label: "RFCs, design reviews"
+        type: leaf
+      - id: team_pair
+        label: "Pair programming, mob sessions"
+        type: leaf
+      - id: team_process_model
+        label: "Agile vs Kanban vs Shape Up"
+        type: leaf
+  - id: data_ai
+    label: "20. Data Science & AI Entegrasyonu"
+    type: category
+    children:
+      - id: ai_ml_serving
+        label: "ML models serving (Django + TensorFlow/PyTorch)"
+        type: leaf
+      - id: ai_feature_store
+        label: "Feature stores"
+        type: leaf
+      - id: ai_data_pipelines
+        label: "Data pipelines (Airflow, Prefect)"
+        type: leaf
+      - id: ai_realtime_inference
+        label: "Realtime inference with Celery or gRPC"
+        type: leaf
+      - id: ai_vector_db
+        label: "Vector DB integration (Pinecone, Weaviate)"
+        type: leaf
+  - id: misc
+    label: "21. Diğer / Özel Gereksinimler"
+    type: category
+    children:
+      - id: misc_multitenancy
+        label: "Multi-tenancy"
+        type: leaf
+      - id: misc_data_migrations
+        label: "Data migrations (complex transformation)"
+        type: leaf
+      - id: misc_analytics
+        label: "Analytics & events pipeline"
+        type: leaf
+      - id: misc_feature_flags
+        label: "Feature flags / experimentation"
+        type: leaf
+      - id: misc_ddd
+        label: "Domain-driven design"
+        type: leaf
+  - id: notifications
+    label: "22. E-posta & Bildirim Altyapısı"
+    type: category
+    children:
+      - id: notif_email
+        label: "Email providers: SMTP, Postmark/Sendgrid"
+        type: leaf
+        tags: [notifications]
+      - id: notif_templating
+        label: "Templating: django-templated-email, MJML"
+        type: leaf
+      - id: notif_push
+        label: "Push: Web Push, FCM/APNs"
+        type: leaf
+        tags: [mobile]
+      - id: notif_inapp
+        label: "In-app notifications & digest jobs"
+        type: leaf
+  - id: payments_billing
+    label: "23. Ödemeler & Faturalama"
+    type: category
+    children:
+      - id: pay_stripe
+        label: "Stripe / Iyzico / PayPal entegrasyonu"
+        type: leaf
+        tags: [payments, security]
+      - id: pay_billing
+        label: "Abonelikler, metered billing, webhooks"
+        type: leaf
+      - id: pay_tax_fraud
+        label: "Vergi, iade, sahtekârlık önleme"
+        type: leaf
+  - id: i18n_a11y
+    label: "24. Uluslararasılaştırma & Erişilebilirlik"
+    type: category
+    children:
+      - id: i18n_tools
+        label: "i18n/l10n: django-rosetta, gettext"
+        type: leaf
+      - id: i18n_timezone_currency
+        label: "Timezone & para birimi"
+        type: leaf
+      - id: a11y_wcag
+        label: "WCAG, ARIA, klavye navigasyonu"
+        type: leaf
+  - id: data_governance
+    label: "25. Veri Yönetişimi & Gizlilik"
+    type: category
+    children:
+      - id: dg_pii
+        label: "PII sınıflandırma, minimizasyon"
+        type: leaf
+      - id: dg_audit
+        label: "Audit logging (kim, ne zaman, ne yaptı)"
+        type: leaf
+      - id: dg_retention
+        label: "Data retention/erasure, DPO süreçleri"
+        type: leaf
+      - id: dg_catalog
+        label: "Data catalog & lineage (OpenMetadata)"
+        type: leaf
+  - id: supply_chain
+    label: "26. Tedarik Zinciri Güvenliği"
+    type: category
+    children:
+      - id: sc_sbom
+        label: "SBOM (CycloneDX), Dependabot/Renovate"
+        type: leaf
+      - id: sc_signed_images
+        label: "İmzalı container imajları (cosign)"
+        type: leaf
+      - id: sc_pinned_hashes
+        label: "Pinned hashes, pip-tools/poetry lock"
+        type: leaf
+  - id: iac_resilience
+    label: "27. IaC, Dayanıklılık & Felaket Kurtarma"
+    type: category
+    children:
+      - id: iac_tools
+        label: "Terraform/Ansible, değişiklik onay akışları"
+        type: leaf
+      - id: iac_runbook
+        label: "Backup/restore runbook, RPO/RTO hedefleri"
+        type: leaf
+      - id: iac_chaos
+        label: "Multi-AZ/region, chaos testing"
+        type: leaf
+  - id: cost_finops
+    label: "28. Maliyet & FinOps"
+    type: category
+    children:
+      - id: finops_tagging
+        label: "Kaynak etiketleme, showback/chargeback"
+        type: leaf
+      - id: finops_autoscale
+        label: "Autoscaling eşikleri, kapasite planlama"
+        type: leaf
+      - id: finops_egress
+        label: "CDN/egress optimizasyonu"
+        type: leaf
+  - id: search_relevance
+    label: "29. Arama & Alaka Düzeyi"
+    type: category
+    children:
+      - id: search_synonyms
+        label: "Synonym/typo toleransı"
+        type: leaf
+      - id: search_ranking
+        label: "Sıralama, boosting, A/B"
+        type: leaf
+      - id: search_tune
+        label: "ES/OpenSearch tune, Postgres FTS"
+        type: leaf
+  - id: mobile_clients
+    label: "30. Mobil/Masaüstü İstemciler"
+    type: category
+    children:
+      - id: mobile_rn
+        label: "React Native/Flutter entegrasyonu"
+        type: leaf
+      - id: mobile_offline
+        label: "Offline-first, delta sync"
+        type: leaf
+      - id: mobile_deeplink
+        label: "Deep link, app auth akışları"
+        type: leaf
+  - id: zero_downtime
+    label: "31. Sıfır Kesinti Değişiklikler"
+    type: category
+    children:
+      - id: zdt_backfill
+        label: "Backfill → dual write → flip → cleanup"
+        type: leaf
+      - id: zdt_bluegreen
+        label: "Blue/green + veritabanı şeması evrimi"
+        type: leaf
+      - id: zdt_feature_flags
+        label: "Feature flag ile kademeli açılış"
+        type: leaf
+  - id: decision_criteria
+    label: "32. Karar Kriterleri"
+    type: category
+    children:
+      - id: dc_team_skill
+        label: "Ekip yetkinliği, işe alım piyasası"
+        type: leaf
+      - id: dc_regulation
+        label: "Regülasyon/uyum gereksinimleri (KVKK/GDPR/PCI)"
+        type: leaf
+      - id: dc_slo
+        label: "SLO/SLA hedefleri (availability, latency)"
+        type: leaf
+      - id: dc_budget_ops
+        label: "Bütçe ve operasyon olgunluğu"
+        type: leaf
+  - id: anti_patterns
+    label: "33. Antipatterns & Kokular"
+    type: category
+    children:
+      - id: ap_early_microservices
+        label: "Erken mikroservisleşme"
+        type: leaf
+        tags: [anti-pattern]
+      - id: ap_cache_overuse
+        label: "Aşırı genel cache (stale data, invalidation yok)"
+        type: leaf
+        tags: [anti-pattern]
+      - id: ap_schema_less_events
+        label: "Şemasız eventler (versiyonlama yok)"
+        type: leaf
+        tags: [anti-pattern]
+      - id: ap_secrets_in_repo
+        label: "Gizli bilgileri .env yerine repo’ya koymak"
+        type: leaf
+        tags: [anti-pattern, security]
+relations:
+  - from: auth
+    to: ["frontend_integration", "api_style"]
+  - from: data_layer
+    to: ["performance_scaling", "deploy_infra", "observability", "data_ai", "search_relevance"]
+  - from: cache_async
+    to: ["performance_scaling", "deploy_infra"]
+  - from: testing_quality
+    to: ["cicd", "dev_dx"]
+  - from: observability
+    to: ["performance_scaling", "deploy_infra"]
+  - from: dev_dx
+    to: ["team_processes", "cicd"]
+  - from: data_ai
+    to: ["data_layer", "cache_async", "performance_scaling"]
+  - from: payments_billing
+    to: ["api_style", "security_compliance", "observability", "notifications"]
+  - from: notifications
+    to: ["cicd", "cache_async", "realtime", "mobile_clients"]
+  - from: data_governance
+    to: ["security_compliance", "observability", "data_layer"]
+  - from: supply_chain
+    to: ["cicd", "packaging_release", "security_compliance"]
+  - from: iac_resilience
+    to: ["deploy_infra", "observability", "performance_scaling"]
+  - from: cost_finops
+    to: ["deploy_infra", "observability"]
+  - from: zero_downtime
+    to: ["packaging_release", "cicd", "data_layer"]
+  - from: frontend_integration
+    to: ["testing_quality"]
+  - from: security_compliance
+    to: ["observability"]
+  - from: project_type
+    to: ["observability", "security_compliance", "cost_finops"]
+  - from: deploy_infra
+    to: ["frontend_integration", "observability"]
+  - from: mobile_clients
+    to: ["api_style", "auth"]
+  - from: realtime
+    to: ["observability"]
+notes:
+  - "PATCH v1.5: label/type standardı, default_attributes, relations bloğu, tags ve scoring eklendi; decision_criteria & anti_patterns eklendi."
+  - "UID önerisi: burada insan okunur id kullanıldı. Tüm düğümlere UUID eklemek veya bir slug politikası kullanmak için otomatik script sağlayabilirim."
+  - "Scoring: UI'da seçilen path (düğüm listesi) için score hesaplanabilir: her node'un attributes'ı normalize edilip ağırlıklandırılır."
+  - "Import önerisi: YAML'ı DB'ye import edip nodes tablosu + relations tablosu oluşturman UI'yi ve aramayı kolaylaştırır."
