@@ -1,1 +1,397 @@
+root: "Next.js Karar Ağacı"
+meta:
+  author: "atlnatln"
+  generated_at: "2025-08-28"
+  version: "1.1"
+  owner: "frontend-team"
+default_attributes:
+  impact: "high"
+  cost: "$$"
+  complexity: "medium"
+  risk: "med"
+attributes:
+  scales:
+    impact: ["low", "med", "high"]
+    cost: ["$", "$$", "$$$"]
+    complexity: ["easy", "medium", "hard"]
+    risk: ["low", "med", "high"]
+scoring:
+  mappings:
+    impact: { low: 1, med: 2, high: 3 }
+    cost: { $: 1, $$: 2, $$$: 3 }
+    complexity: { easy: 1, medium: 2, hard: 3 }
+    risk: { low: 1, med: 2, high: 3 }
+  weights:
+    impact: 0.4
+    cost: 0.2
+    complexity: 0.2
+    risk: 0.2
+  formula: "score = sum(mappings[attr] * weights[attr]) normalized"
+  note: "Next.js domain seçimleri için node attributes normalize edilip ağırlıklandırılır. Ortak scoring scoring.yaml'a taşınabilir."
+nodes:
+  - id: nextjs_router_and_architecture
+    label: "1. Router & Mimari Seçimi"
+    type: category
+    children:
+      - id: nextjs_router_choice
+        label: "Router seçimi: App Router (recommended) vs Pages Router"
+        type: choice
+        attributes: { impact: "high", cost: "$", complexity: "medium", risk: "med" }
+      - id: nextjs_monorepo_integration
+        label: "Turborepo / monorepo entegrasyonu"
+        type: leaf
+      - id: nextjs_hybrid_adoption
+        label: "Incremental adoption: existing React SPA -> Next.js hybrid"
+        type: leaf
 
+  - id: nextjs_rendering_and_rsc
+    label: "2. Rendering Model & Server Components"
+    type: category
+    children:
+      - id: nextjs_rendering_model
+        label: "Rendering stratejisi: SSR / SSG / ISR / RSC"
+        type: choice
+      - id: nextjs_server_components
+        label: "Server Components kullanımı (App Router)"
+        type: leaf
+      - id: nextjs_client_components_boundary
+        label: "Client vs Server component boundary decisions"
+        type: leaf
+
+  - id: nextjs_data_fetching_and_caching
+    label: "3. Data Fetching & Cache Patterns"
+    type: category
+    children:
+      - id: nextjs_server_fetching
+        label: "Server-side fetching (fetch on server) vs client fetching"
+        type: leaf
+      - id: nextjs_swr_and_query
+        label: "Client caching: SWR / react-query usage in Next pages"
+        type: leaf
+      - id: nextjs_isr_and_cache_control
+        label: "ISR configuration & cache-control headers"
+        type: leaf
+      - id: nextjs_edge_cache
+        label: "Edge caching strategies (stale-while-revalidate, TTL)"
+        type: leaf
+
+  - id: nextjs_api_and_bff
+    label: "4. API Routes / BFF / Edge Functions"
+    type: category
+    children:
+      - id: nextjs_api_routes_vs_external
+        label: "API routes vs external API (when to use internal API routes)"
+        type: leaf
+      - id: nextjs_bff_need
+        label: "BFF layer ihtiyacı (aggregation, auth proxy)"
+        type: leaf
+      - id: nextjs_edge_functions
+        label: "Edge functions: Vercel Edge, Cloudflare Workers"
+        type: leaf
+      - id: nextjs_api_contracts
+        label: "Contract-first (OpenAPI) integration with API routes"
+        type: leaf
+
+  - id: nextjs_auth_session
+    label: "5. Auth & Session Yönetimi"
+    type: category
+    children:
+      - id: nextjs_auth_strategy
+        label: "Auth: next-auth / cookie-proxy / custom server-side sessions"
+        type: choice
+      - id: nextjs_session_rotation
+        label: "Session rotation, refresh token handling on server"
+        type: leaf
+      - id: nextjs_csrf_considerations
+        label: "CSRF protections for form/API endpoints"
+        type: leaf
+
+  - id: nextjs_images_assets
+    label: "6. Image & Asset Optimization"
+    type: category
+    children:
+      - id: nextjs_image_component
+        label: "next/image kullanımı vs external image service"
+        type: leaf
+      - id: nextjs_image_cdn_pipeline
+        label: "Image CDN & optimization pipeline"
+        type: leaf
+      - id: nextjs_static_assets_strategy
+        label: "Public/static assets, cache busting, fingerprinting"
+        type: leaf
+
+  - id: nextjs_middleware_and_routing
+    label: "7. Middleware, Rewrites & Middle Tier"
+    type: category
+    children:
+      - id: nextjs_middleware_auth
+        label: "Middleware for auth, redirects, headers"
+        type: leaf
+      - id: nextjs_rewrites_and_rewrites_rules
+        label: "Rewrites / redirects / proxy rules"
+        type: leaf
+      - id: nextjs_preview_mode
+        label: "Preview mode strategy & preview cache invalidation"
+        type: leaf
+
+  - id: nextjs_build_and_performance
+    label: "8. Build, Bundling & Performance"
+    type: category
+    children:
+      - id: nextjs_build_perf
+        label: "Build performance: incremental builds, turbopack"
+        type: leaf
+      - id: nextjs_code_splitting
+        label: "Server/client code splitting & resource budgets"
+        type: leaf
+      - id: nextjs_core_web_vitals
+        label: "Core Web Vitals & LCP/CLS/TTFB optimization"
+        type: leaf
+      - id: nextjs_prefetch_preload
+        label: "Prefetch / preload / priority hints"
+        type: leaf
+
+  - id: nextjs_deploy_and_hosting
+    label: "9. Deploy & Hosting"
+    type: category
+    children:
+      - id: nextjs_deploy_vercel
+        label: "Vercel platform (edge + serverless)"
+        type: leaf
+      - id: nextjs_deploy_selfhost
+        label: "Self-host (Node server / Docker / K8s)"
+        type: leaf
+      - id: nextjs_deploy_edge_vs_server
+        label: "When to use edge vs regional server runtime"
+        type: leaf
+      - id: nextjs_cdn_integration
+        label: "CDN integration & cache invalidation policy"
+        type: leaf
+
+  - id: nextjs_testing_and_quality
+    label: "10. Test & Kalite"
+    type: category
+    children:
+      - id: nextjs_unit_testing
+        label: "Unit: Jest / Vitest for server & client"
+        type: leaf
+      - id: nextjs_integration_testing
+        label: "Integration tests for API routes and pages"
+        type: leaf
+      - id: nextjs_e2e_testing
+        label: "E2E: Playwright for pages & preview"
+        type: leaf
+      - id: nextjs_contract_validation
+        label: "Contract validation in CI (OpenAPI / Pact)"
+        type: leaf
+
+  - id: nextjs_security
+    label: "11. Security"
+    type: category
+    children:
+      - id: nextjs_security_headers
+        label: "CSP, HSTS, X-Frame-Options for Next responses"
+        type: leaf
+      - id: nextjs_image_remote_patterns
+        label: "next.config image remotePatterns security"
+        type: leaf
+      - id: nextjs_supply_chain
+        label: "Supply chain: dependency scanning, locked versions"
+        type: leaf
+      - id: nextjs_runtime_hardening
+        label: "Runtime hardening (limit env exposure, server-only vars)"
+        type: leaf
+
+  - id: nextjs_observability_and_perf
+    label: "12. Observability & RUM"
+    type: category
+    children:
+      - id: nextjs_rum_integration
+        label: "RUM for Core Web Vitals per-user"
+        type: leaf
+      - id: nextjs_server_logging
+        label: "Server-side logging & structured logs"
+        type: leaf
+      - id: nextjs_tracing
+        label: "Tracing for SSR latency (OTel integration)"
+        type: leaf
+
+  - id: nextjs_dev_dx_and_ops
+    label: "13. Developer DX & Tooling"
+    type: category
+    children:
+      - id: nextjs_fast_refresh
+        label: "Fast refresh / hot reload experience"
+        type: leaf
+      - id: nextjs_local_mocks
+        label: "MSW + local mock for page rendering"
+        type: leaf
+      - id: nextjs_env_strategy
+        label: "Runtime env separation: public vs server-only"
+        type: leaf
+      - id: nextjs_ci_build_cache
+        label: "CI build cache & deterministic builds"
+        type: leaf
+
+  - id: nextjs_internationalization
+    label: "14. Internationalization / Localization"
+    type: category
+    children:
+      - id: nextjs_i18n_builtin
+        label: "Built-in Next.js i18n routing vs external libs"
+        type: leaf
+      - id: nextjs_i18n_ssg_strategy
+        label: "Static translation generation vs runtime loading"
+        type: leaf
+      - id: nextjs_i18n_routing
+        label: "Locale subpaths, domain routing, fallback"
+        type: leaf
+
+  - id: nextjs_design_ops_and_storybook
+    label: "15. Design Ops & Component QA"
+    type: category
+    children:
+      - id: nextjs_storybook_integration
+        label: "Storybook + Chromatic in Next monorepo"
+        type: leaf
+      - id: nextjs_design_tokens_sync
+        label: "Design tokens syncing pipeline (Figma → tokens)"
+        type: leaf
+
+  - id: nextjs_mobile_and_isomorphic
+    label: "16. Mobile & Isomorphic Considerations"
+    type: category
+    children:
+      - id: nextjs_shared_components_strategy
+        label: "Shared components web ↔ mobile (platform APIs)"
+        type: leaf
+      - id: nextjs_lightweight_pages_for_mobile
+        label: "Lightweight render paths for low-end devices"
+        type: leaf
+
+  - id: nextjs_decision_criteria
+    label: "17. Karar Kriterleri (Next.js özel)"
+    type: category
+    children:
+      - id: nextjs_dc_seo_priority
+        label: "SEO önceliği ve crawl ihtiyaçları"
+        type: leaf
+      - id: nextjs_dc_traffic_profile
+        label: "Traffic pattern: bursty vs steady"
+        type: leaf
+      - id: nextjs_dc_cost_constraints
+        label: "Edge compute / Vercel cost constraints"
+        type: leaf
+
+  - id: nextjs_anti_patterns
+    label: "18. Antipatterns & Kokular (Next.js)"
+    type: category
+    children:
+      - id: nextjs_ap_overuse_ssr
+        label: "Her sayfada SSR kullanma (gereksiz TTFB)"
+        type: leaf
+      - id: nextjs_ap_misconfigured_cache
+        label: "ISR / cache headers yanlış yapılandırma"
+        type: leaf
+      - id: nextjs_ap_server_components_misuse
+        label: "Server components yanlış kullanımında gereksiz bundle artışı"
+        type: leaf
+        
+  - id: nextjs_accessibility
+    label: "19. Accessibility (a11y)"
+    type: category
+    children:
+      - id: nextjs_a11y_semantics
+        label: "Semantic HTML, ARIA roles"
+        type: leaf
+      - id: nextjs_a11y_keyboard
+        label: "Keyboard navigation & focus management"
+        type: leaf
+      - id: nextjs_a11y_contrast
+        label: "Color contrast & WCAG AA/AAA"
+        type: leaf
+      - id: nextjs_a11y_testing
+        label: "Automated a11y testing (axe, pa11y)"
+        type: leaf
+
+  - id: nextjs_analytics
+    label: "20. Analytics & Tracking"
+    type: category
+    children:
+      - id: nextjs_analytics_consent
+        label: "Consent management (GDPR, cookie banners)"
+        type: leaf
+      - id: nextjs_analytics_tools
+        label: "Analytics tools (GA4, Plausible, Segment)"
+        type: leaf
+      - id: nextjs_analytics_event_model
+        label: "Event schema & tagging consistency"
+        type: leaf
+
+  - id: nextjs_cms
+    label: "21. CMS & Content Workflows"
+    type: category
+    children:
+      - id: nextjs_cms_headless
+        label: "Headless CMS entegrasyonu (Sanity, Contentful, Strapi)"
+        type: leaf
+      - id: nextjs_cms_preview
+        label: "Preview workflows (draft vs published)"
+        type: leaf
+      - id: nextjs_cms_cache_invalidation
+        label: "CMS → ISR cache invalidation webhooks"
+        type: leaf
+
+  - id: nextjs_finops
+    label: "22. FinOps & Cost Awareness"
+    type: category
+    children:
+      - id: nextjs_cost_monitoring
+        label: "Monitoring edge/serverless costs"
+        type: leaf
+      - id: nextjs_cost_cdn
+        label: "CDN bandwidth optimization"
+        type: leaf
+      - id: nextjs_cost_build
+        label: "Build minutes / cache strategy"
+        type: leaf
+
+relations:
+  - from: nextjs_rendering_and_rsc
+    to: ["react_rendering_patterns", "frontend_integration"]
+  - from: nextjs_api_and_bff
+    to: ["api_style", "deploy_infra", "auth"]
+  - from: nextjs_auth_session
+    to: ["auth", "security_compliance"]
+  - from: nextjs_images_assets
+    to: ["react_image_optimization", "deploy_infra"]
+  - from: nextjs_middleware_and_routing
+    to: ["security_compliance", "cicd"]
+  - from: nextjs_build_and_performance
+    to: ["performance_scaling", "observability"]
+  - from: nextjs_deploy_and_hosting
+    to: ["deploy_infra", "cost_finops"]
+  - from: nextjs_testing_and_quality
+    to: ["testing_quality", "cicd"]
+  - from: nextjs_internationalization
+    to: ["i18n_a11y", "react_design_system"]
+  - from: nextjs_design_ops_and_storybook
+    to: ["react_design_ops", "dev_dx"]
+  - from: nextjs_observability_and_perf
+    to: ["observability", "react_performance"]
+  - from: nextjs_security
+    to: ["supply_chain", "security_compliance", "cicd"]
+  - from: nextjs_accessibility
+    to: ["i18n_a11y", "react_accessibility"]
+  - from: nextjs_analytics
+    to: ["observability", "decision_criteria"]
+  - from: nextjs_cms
+    to: ["nextjs_preview_mode", "nextjs_isr_and_cache_control"]
+  - from: nextjs_finops
+    to: ["nextjs_deploy_and_hosting", "cost_finops"]
+
+notes:
+  - "PATCH v1.1: accessibility, analytics, CMS, FinOps kategorileri eklendi; relations güncellendi."
+  - "ID politikası: domain_prefix.node_name. Duplicate id kontrolü ve JSON-Schema validasyonu CI'da çalıştırılmalıdır."
+  - "Bazı node'larda attributes eksik; scoring testi için impact/cost/complexity/risk ekleyin."
+  - "nextjs.yaml, react.yaml ve common.yaml birlikte merge edilip canonical build/nodes.json üretilmelidir."
