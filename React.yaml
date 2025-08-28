@@ -1,1 +1,405 @@
-
+root: "React Karar Ağacı"
+meta:
+  author: "atlnatln"
+  generated_at: "2025-08-28"
+  version: "1.1"
+  owner: "frontend-team"
+default_attributes:
+  impact: "med"
+  cost: "$"
+  complexity: "medium"
+  risk: "med"
+attributes:
+  scales:
+    impact: ["low", "med", "high"]
+    cost: ["$", "$$", "$$$"]
+    complexity: ["easy", "medium", "hard"]
+    risk: ["low", "med", "high"]
+scoring:
+  mappings:
+    impact: { low: 1, med: 2, high: 3 }
+    cost: { $: 1, $$: 2, $$$: 3 }
+    complexity: { easy: 1, medium: 2, hard: 3 }
+    risk: { low: 1, med: 2, high: 3 }
+  weights:
+    impact: 0.4
+    cost: 0.2
+    complexity: 0.2
+    risk: 0.2
+  formula: "score = sum(mappings[attr] * weights[attr]) normalized"
+  note: "React domain seçimleri için node attributes normalize edilip ağırlıklandırılır."
+nodes:
+  - id: react_project_setup
+    label: "1. Başlangıç: Frontend Proje Kurulumu"
+    type: category
+    tags: [devdx]
+    children:
+      - id: react_setup_tooling
+        label: "Tooling: Vite / CRA / Next.js (spa) seçimi"
+        type: leaf
+      - id: react_setup_repo_structure
+        label: "Repo structure: packages/ vs apps/ vs single"
+        type: leaf
+      - id: react_setup_monorepo
+        label: "Monorepo (turborepo / pnpm workspaces) vs single repo"
+        type: leaf
+      - id: react_setup_precommit
+        label: "Pre-commit, lint-staged, ESLint, Prettier"
+        type: leaf
+  - id: react_project_type
+    label: "2. Proje Tipi / Rendering İhtiyacı"
+    type: category
+    children:
+      - id: react_spa
+        label: "React SPA (CSR)"
+        type: choice
+        attributes: { impact: "med", cost: "$", complexity: "medium", risk: "med" }
+      - id: react_isomorphic_need
+        label: "SEO / İlk render gereksinimi -> SSR/Prerender gerekebilir"
+        type: leaf
+      - id: react_microfrontend_consideration
+        label: "Microfrontends ihtiyacı (module federation / iframe)"
+        type: leaf
+  - id: react_rendering_patterns
+    label: "3. Render & Prerender Stratejileri"
+    type: category
+    children:
+      - id: react_ssr_external
+        label: "SSR via Next.js veya custom Node SSR"
+        type: leaf
+      - id: react_ssg_prerender
+        label: "Prerender / SSG for static pages"
+        type: leaf
+      - id: react_hydration_cost
+        label: "Hydration maliyeti ve client bundle optimizasyonu"
+        type: leaf
+  - id: react_state_management
+    label: "4. State Yönetimi"
+    type: category
+    children:
+      - id: react_state_context
+        label: "Context + hooks (küçük uygulama)"
+        type: leaf
+      - id: react_state_global
+        label: "Global state: Redux / Zustand / Recoil"
+        type: leaf
+      - id: react_state_query
+        label: "Server state & caching: react-query / swr"
+        type: leaf
+      - id: react_state_persistence
+        label: "Persist: localStorage / IndexedDB / cookie"
+        type: leaf
+  - id: react_data_fetching
+    label: "5. Data Fetching & Caching"
+    type: category
+    children:
+      - id: react_fetch_client
+        label: "fetch / axios / ky seçimi"
+        type: leaf
+      - id: react_fetch_cache_layer
+        label: "Client caching: react-query / swr / custom"
+        type: leaf
+      - id: react_graphql_client
+        label: "GraphQL client: Apollo / Relay / urql"
+        type: leaf
+      - id: react_stale_while_revalidate
+        label: "Stale-while-revalidate pattern"
+        type: leaf
+  - id: react_routing_and_code_splitting
+    label: "6. Routing & Code Splitting"
+    type: category
+    children:
+      - id: react_routing_lib
+        label: "react-router / custom router"
+        type: leaf
+      - id: react_dynamic_import
+        label: "Dynamic import & code splitting"
+        type: leaf
+      - id: react_lazy_loading
+        label: "Route-based lazy loading, chunk strategy"
+        type: leaf
+  - id: react_bundler_and_build
+    label: "7. Bundler & Build"
+    type: category
+    children:
+      - id: react_bundler_choice
+        label: "Vite vs Webpack vs Rollup"
+        type: leaf
+      - id: react_build_perf
+        label: "Build speed, caching, incremental build"
+        type: leaf
+      - id: react_asset_pipeline
+        label: "Asset pipeline: images, fonts, svgs"
+        type: leaf
+  - id: react_styling
+    label: "8. Styling & Design System"
+    type: category
+    children:
+      - id: react_css_strategy
+        label: "CSS approach: Tailwind / CSS Modules / styled-components"
+        type: leaf
+      - id: react_design_system
+        label: "Component library & Storybook"
+        type: leaf
+      - id: react_design_tokens
+        label: "Design tokens (Figma ↔ code sync)"
+        type: leaf
+  - id: react_accessibility
+    label: "9. Accessibility (a11y)"
+    type: category
+    children:
+      - id: react_a11y_keyboard
+        label: "Keyboard navigation & focus management"
+        type: leaf
+      - id: react_a11y_screenreader
+        label: "Screen reader, ARIA roles & semantics"
+        type: leaf
+      - id: react_a11y_contrast
+        label: "Color contrast & WCAG AA/AAA"
+        type: leaf
+      - id: react_a11y_audit
+        label: "a11y audit in CI (axe, pa11y)"
+        type: leaf
+  - id: react_forms_and_validation
+    label: "10. Formlar & Validation"
+    type: category
+    children:
+      - id: react_forms_lib
+        label: "react-hook-form / formik / controlled forms"
+        type: leaf
+      - id: react_client_side_validation
+        label: "Client validation + server-side verification"
+        type: leaf
+  - id: react_auth_integration
+    label: "11. Auth & Session"
+    type: category
+    children:
+      - id: react_auth_jwt
+        label: "JWT in client (access token in memory)"
+        type: leaf
+      - id: react_auth_cookie
+        label: "Cookie-based auth (httpOnly cookies) -> prefer server-managed"
+        type: leaf
+      - id: react_auth_oauth
+        label: "OAuth flows from client (PKCE)"
+        type: leaf
+  - id: react_testing
+    label: "12. Testler"
+    type: category
+    children:
+      - id: react_unit_testing
+        label: "Unit: Jest + React Testing Library"
+        type: leaf
+      - id: react_integration_testing
+        label: "Integration: component integration tests"
+        type: leaf
+      - id: react_e2e_testing
+        label: "E2E: Playwright / Cypress"
+        type: leaf
+      - id: react_visual_regression
+        label: "Visual regression (Chromatic / Percy)"
+        type: leaf
+  - id: react_performance
+    label: "13. Performans & Core Web Vitals"
+    type: category
+    children:
+      - id: react_perf_lighthouse
+        label: "Lighthouse hedefleri, CLS, LCP, TTFB"
+        type: leaf
+      - id: react_perf_lazy
+        label: "Lazy loading, image optimization, virtualization"
+        type: leaf
+      - id: react_perf_bundle_analysis
+        label: "Bundle analysis & tree-shaking"
+        type: leaf
+      - id: react_perf_rum
+        label: "RUM: Core Web Vitals per-user (collect & act)"
+        type: leaf
+      - id: react_perf_prefetch_preload
+        label: "Prefetch / Preload / DNS preconnect stratejileri"
+        type: leaf
+      - id: react_perf_profiler
+        label: "React Profiler usage & flamecharts"
+        type: leaf
+  - id: react_pwa_offline
+    label: "14. PWA & Offline"
+    type: category
+    children:
+      - id: react_service_worker
+        label: "Service Worker & Workbox"
+        type: leaf
+      - id: react_offline_sync
+        label: "Offline sync strategy, background sync"
+        type: leaf
+  - id: react_security
+    label: "15. Frontend Security"
+    type: category
+    children:
+      - id: react_csp
+        label: "CSP, secure headers (client-side config)"
+        type: leaf
+      - id: react_xss_mitigation
+        label: "XSS mitigations, sanitize user inputs"
+        type: leaf
+      - id: react_dependency_hardening
+        label: "Dependency pinning, SCA (OSS scan)"
+        type: leaf
+      - id: react_supply_chain
+        label: "Supply chain risk: npm audit, Snyk, Renovate"
+        type: leaf
+      - id: react_runtime_protection
+        label: "Runtime protection: Subresource Integrity, integrity attrs"
+        type: leaf
+      - id: react_frameguard
+        label: "Frameguard / Clickjacking prevention"
+        type: leaf
+  - id: react_deploy_and_hosting
+    label: "16. Deploy & Hosting"
+    type: category
+    children:
+      - id: react_deploy_static_cdns
+        label: "Static CDN: Netlify, Vercel, S3+CloudFront"
+        type: leaf
+      - id: react_deploy_server
+        label: "Serve via Node / SSR host"
+        type: leaf
+      - id: react_cdn_and_cache_headers
+        label: "CDN caching policy & cache-control headers"
+        type: leaf
+  - id: react_edge_serverless
+    label: "17. Edge & Serverless Entegrasyonları"
+    type: category
+    children:
+      - id: react_edge_functions
+        label: "Edge functions: Cloudflare Workers, Vercel Edge"
+        type: leaf
+      - id: react_serverless_api_boundary
+        label: "API routes → client/server sınırı & cold-start"
+        type: leaf
+      - id: react_edge_cache
+        label: "Edge caching strategies & TTL"
+        type: leaf
+  - id: react_design_ops
+    label: "18. Design Ops / Storybook"
+    type: category
+    children:
+      - id: react_storybook
+        label: "Storybook + Chromatic CI"
+        type: leaf
+      - id: react_design_tokens
+        label: "Design tokens, Figma ↔ code sync"
+        type: leaf
+      - id: react_component_reuse
+        label: "Component reuse rules (web ↔ mobile)"
+        type: leaf
+  - id: react_mobile_integration
+    label: "19. Mobile / Cross-platform Entegrasyon"
+    type: category
+    children:
+      - id: react_native_strategy
+        label: "React Native sharing strategy (Expo vs bare)"
+        type: leaf
+      - id: react_mobile_component_reuse
+        label: "Web & Mobile component reuse"
+        type: leaf
+      - id: react_mobile_offline
+        label: "Mobile offline & delta sync strategies"
+        type: leaf
+  - id: react_i18n
+    label: "20. i18n & L10n"
+    type: category
+    children:
+      - id: react_i18n_library
+        label: "Kütüphane seçimi: react-intl / lingui / next-i18next"
+        type: leaf
+      - id: react_i18n_rtl
+        label: "RTL (sağdan sola) ve çoklu dil desteği"
+        type: leaf
+      - id: react_i18n_dynamic
+        label: "Dinamik çeviri yükleme, ICU format"
+        type: leaf
+  - id: react_dev_dx
+    label: "21. Developer DX"
+    type: category
+    children:
+      - id: react_fast_refresh
+        label: "Fast refresh / HMR"
+        type: leaf
+      - id: react_source_maps
+        label: "Source maps & debugging"
+        type: leaf
+      - id: react_local_mocks
+        label: "MSW local mocks for UI dev"
+        type: leaf
+      - id: react_dev_ci_i18n_pipeline
+        label: "i18n pipeline: linting, extraction, build step"
+        type: leaf
+  - id: react_observability
+    label: "22. Monitoring & Analytics"
+    type: category
+    children:
+      - id: react_sentry
+        label: "Client-side error monitoring (Sentry)"
+        type: leaf
+      - id: react_rum
+        label: "Real User Monitoring (RUM)"
+        type: leaf
+      - id: react_analytics
+        label: "Analytics (GA4, Segment)"
+        type: leaf
+  - id: react_decision_criteria
+    label: "23. Karar Kriterleri (Frontend)"
+    type: category
+    children:
+      - id: react_dc_team_skill
+        label: "Ekip yetkinliği (React deneyimi)"
+        type: leaf
+      - id: react_dc_seo_need
+        label: "SEO / İlk indexleme ihtiyaçları"
+        type: leaf
+      - id: react_dc_budget
+        label: "Bütçe ve bakım maliyeti"
+        type: leaf
+  - id: react_anti_patterns
+    label: "24. Antipatterns & Kokular (Frontend)"
+    type: category
+    children:
+      - id: react_ap_client_side_only_for_seo
+        label: "SEO gereken yerde sadece client-side render kullanma"
+        type: leaf
+      - id: react_ap_large_monolithic_bundle
+        label: "Tek büyük JS bundle (tree-shaking yok)"
+        type: leaf
+      - id: react_ap_secret_in_client
+        label: "Client-side gizli anahtar depolama"
+        type: leaf
+relations:
+  - from: react_auth_integration
+    to: ["auth", "api_style"]
+  - from: react_data_fetching
+    to: ["api_style", "data_layer", "caching"]
+  - from: react_deploy_and_hosting
+    to: ["deploy_infra", "performance_scaling"]
+  - from: react_testing
+    to: ["testing_quality", "cicd"]
+  - from: react_observability
+    to: ["performance_scaling", "deploy_infra"]
+  - from: react_state_management
+    to: ["frontend_integration", "data_layer"]
+  - from: react_rendering_patterns
+    to: ["nextjs", "frontend_integration"]
+  - from: react_security
+    to: ["cicd", "supply_chain"]
+  - from: react_i18n
+    to: ["react_dev_dx", "react_design_system"]
+  - from: react_performance
+    to: ["react_observability"]
+  - from: react_design_ops
+    to: ["ci_cd", "dev_dx"]
+  - from: react_mobile_integration
+    to: ["frontend_integration", "api_style"]
+notes:
+  - "PATCH v1.1: i18n, accessibility, security derinleştirmeleri, edge/serverless, design ops, mobile ve performance detayları eklendi."
+  - "ID politikası: domain_prefix.node_name. Duplicate id kontrolü CI'da çalıştırılmalı."
+  - "Bazı node'ların attributes eksik; scoring ile değerlendirme için impact/cost/complexity/risk ekleyin."
+  - "react.yaml, nextjs.yaml ve common.yaml birlikte merge edilip canonical build/nodes.json üretilmeli."
