@@ -198,7 +198,7 @@ nodes:
             type: leaf
             tags: [cache]
           - id: data_elastic
-            label: "Elasticsearch / OpenSearch (search & analytics)"
+            label: "OpenSearch (search & analytics)"
             type: leaf
             tags: [search]
           - id: data_fulltext
