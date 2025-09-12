@@ -1,0 +1,113 @@
+ucretsiz_ilan_kategorileri:
+  - id: "cat_ucretsiz_sahiplendirme"
+    ad: "Sahiplendirme (Yuva Arayan Canlar)"
+    slug: "sahiplendirme-yuva-arayan-canlar"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "hayvan_turu_sahiplendirme", label: "Hayvan Türü", tip: "select_from_tags", kaynak_etiket_kategorisi: "HAYVAN_TURU", ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "hayvan_irk_sahiplendirme", label: "Hayvan Irkı/Melezlik Durumu", tip: "breed_composition_selector", depends_on_field: "hayvan_turu_sahiplendirme", default_options: ["Bilinmiyor"], ai_importance: 0.75, zorunlu: false }
+        - { alan_adi: "hayvan_yas_sahiplendirme", label: "Yaş Aralığı", tip: "select", secenekler: ["Yavru (0-1 yaş)", "Genç (1-3 yaş)", "Yetişkin (3-7 yaş)", "Yaşlı (7+ yaş)"], ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "hayvan_cinsiyet_sahiplendirme", label: "Cinsiyet", tip: "select", secenekler: ["Erkek", "Dişi", "Bilinmiyor"], ai_importance: 0.75, zorunlu: false }
+        - { alan_adi: "hayvan_boyut_sahiplendirme", label: "Boyut (Türe Göre)", tip: "select", secenekler: ["Çok Küçük", "Küçük", "Orta", "Büyük", "Dev"], ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "saglik_durumu_sahiplendirme", label: "Sağlık Durumu", tip: "select_aciklamali", secenekler_map: { "Sağlıklı": false, "Özel Bakım Gerektiriyor (Açıklama Gerekli)": true, "Engelli (Açıklama Gerekli)": true, "Kronik Rahatsızlığı Var (Açıklama Gerekli)": true}, ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "kisirlastirma_durumu_sahiplendirme", label: "Kısırlaştırma Durumu", tip: "select_aciklamali", secenekler_map: { "Kısırlaştırılmış": false, "Kısırlaştırılacak (Yeni sahip sorumluluğunda/destekle)": true, "Kısırlaştırılmamış (Yavru/Sağlık Nedeniyle - Açıklama Gerekli)": true, "Bilinmiyor": false }, ai_importance: 0.8, zorunlu: true }
+        - { alan_adi: "asi_durumu_sahiplendirme", label: "Aşı Durumu", tip: "select", secenekler: ["Aşıları Tam", "Aşıları Eksik (Tamamlanacak)", "Aşısız (Yavru/Yeni Bulundu)", "Bilinmiyor"], ai_importance: 0.8, zorunlu: false }
+        - { alan_adi: "ic_dis_parazit_sahiplendirme", label: "İç/Dış Parazit Tedavisi", tip: "select", secenekler: ["Düzenli Yapılıyor/Yakın Zamanda Yapıldı", "Yapılacak", "Bilinmiyor"], ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "karakter_ozellikleri_sahiplendirme", label: "Karakter Özellikleri", tip: "multiselect_from_tags", kaynak_etiket_kategorisi: "MIZAC_VE_KISILIK", ai_importance: 0.9, zorunlu: false }
+        - { alan_adi: "egitim_seviyesi_tuvalet_sahiplendirme", label: "Tuvalet Eğitimi", tip: "select", secenekler: ["Tuvalet Eğitimi Var", "Kısmen Var/Devam Ediyor", "Yok/Yeniden Alışması Gerekebilir"], ai_importance: 0.8, zorunlu: false }
+        - { alan_adi: "egitim_seviyesi_temel_itaat_sahiplendirme", label: "Temel İtaat Eğitimi (Köpekler İçin)", tip: "select", secenekler: ["Temel Komutları Biliyor (Otur, Yat, Gel vb.)", "Kısmen Biliyor/Eğitilebilir", "Eğitimi Yok"], hayvan_turu_bagimliligi: "Köpek", ai_importance: 0.75, zorunlu: false }
+        - { alan_adi: "bulundugu_yer_sahiplendirme", label: "Bulunduğu Yer (Şehir, İlçe)", tip: "location_text_city_district", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "sahiplendirme_sartlari_sahiplendirme", label: "Sahiplendirme Şartları ve Beklentiler", tip: "textarea_rich", ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "neden_yuva_ariyor_sahiplendirme", label: "Neden Yuva Arıyor? (Hikayesi)", tip: "textarea_rich", ai_importance: 0.65, zorunlu: false }
+        - { alan_adi: "gecici_yuva_olur_mu_sahiplendirme", label: "Geçici Yuva Desteği Aranıyor Mu?", tip: "boolean_unknown", secenekler: ["Evet, acil geçici yuvaya da ihtiyacı var", "Hayır, sadece kalıcı yuva aranıyor", "Bilinmiyor/Değerlendirilir"], ai_importance: 0.5, zorunlu: false }
+        - { alan_adi: "ozel_ihtiyac_detay_sahiplendirme", label: "Özel İhtiyaçları (Bakım, Davranış, Diyet)", tip: "textarea", ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "cocuklu_aile_uygunlugu_sahiplendirme", label: "Çocuklu Aileye Uygunluk Durumu", tip: "select_aciklamali", secenekler_map: {"Çok Uygun/Çocuklarla Arası İyi":false, "Uygun (Deneyimli ve Gözetimli Aile Şartıyla)":true, "Küçük Çocuklar İçin Tavsiye Edilmez":true, "Uygun Değil/Bilinmiyor":true}, ai_importance: 0.8, zorunlu: false }
+        - { alan_adi: "apartman_hayatina_uygunluk_sahiplendirme", label: "Apartman Yaşamına Uygunluk", tip: "select", secenekler: ["Çok Uygun (Sessiz, az egzersiz ihtiyacı)", "Uygun (Düzenli egzersiz ve ilgiyle)", "Bahçeli Ev Tercih Edilir/Gerekli", "Uygun Değil"], ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "ilk_kez_hayvan_sahiplenecek_kisiye_uygunluk_sahiplendirme", label: "İlk Kez Hayvan Sahiplenecek Kişiye Uygunluk", tip: "select", secenekler: ["Çok Uygun/Kolay Bakım", "Uygun (Araştırma ve sabırla)", "Deneyim Tercih Edilir", "Uygun Değil (Özel ihtiyaçları var)"], ai_importance: 0.75, zorunlu: false }
+        - { alan_adi: "sahiplendiren_iletisim_tercihi_sahiplendirme", label: "İletişim Tercihleri (İlan Sahibi)", tip: "multiselect", secenekler: ["Platform Üzerinden Mesaj (Önerilir)", "Telefon Numarası (Doğrulanmış, İsteğe Bağlı Paylaşılır)", "E-posta (Doğrulanmış, İsteğe Bağlı Paylaşılır)"], ai_importance: 0.5, zorunlu: true }
+        - { alan_adi: "mikrocip_durumu_sahiplendirme", label: "Mikroçip Durumu", tip: "select", secenekler: ["Var ve Kayıtlı", "Var ama Kaydı Güncellenmeli", "Yok", "Bilinmiyor"], ai_importance: 0.6, zorunlu: false }
+        - { alan_adi: "kopekler_icin_enerji_seviyesi_sahiplendirme", label: "Enerji Seviyesi (Köpekler için)", tip: "select", secenekler: ["Düşük (Sakin, az hareketli)", "Orta (Günlük oyun ve yürüyüş yeterli)", "Yüksek (Aktif, uzun egzersiz ihtiyacı)", "Çok Yüksek (Sporcu, sürekli aktivite)"], hayvan_turu_bagimliligi: "Köpek", ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "kediler_icin_tuy_tipi_sahiplendirme", label: "Tüy Tipi ve Bakımı (Kediler için)", tip: "select_aciklamali", secenekler_map: {"Kısa Tüylü (Az Bakım)":false, "Orta Uzunlukta (Haftalık Bakım)":true, "Uzun Tüylü (Günlük Bakım Gerekir)":true}, hayvan_turu_bagimliligi: "Kedi", ai_importance: 0.6, zorunlu: false }
+        - { alan_adi: "kuslar_icin_tur_detay_sahiplendirme", label: "Kuş Türü Detayı (Kuş ise)", tip: "text", hayvan_turu_bagimliligi: "Kuş", ai_importance: 0.5, zorunlu: false }
+        - { alan_adi: "fotograf_video_yukleme_sahiplendirme", label: "Fotoğraf ve Video Yükleme", tip: "multiple_file_upload_with_preview", kurallar: {min_fotograf: 3, max_fotograf: 10, onerilen_video_suresi_saniye: 60, kabul_edilen_formatlar: ["jpg", "jpeg", "png", "mp4", "mov"]}, ai_importance: 0.9, zorunlu: true }
+
+  - id: "cat_ucretsiz_kayipbuluntu"
+    ad: "Kayıp / Buluntu Hayvan İlanları"
+    slug: "kayip-buluntu-hayvan-ilanlari"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "ilan_tipi_kb", label: "İlan Tipi", tip: "select", secenekler: ["Kayıp Hayvan Bildirimi (Hayvanımı Arıyorum)", "Buluntu Hayvan Bildirimi (Hayvan Buldum, Sahibini Arıyorum/Koruyorum)"], ai_importance: 0.98, zorunlu: true }
+        - { alan_adi: "hayvan_turu_kb", label: "Hayvan Türü", tip: "select_from_tags", kaynak_etiket_kategorisi: "HAYVAN_TURU", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "hayvan_irk_kb", label: "Hayvan Irkı/Cinsi", tip: "text", ai_importance: 0.6, zorunlu: false }
+        - { alan_adi: "hayvan_yas_tahmini_kb", label: "Hayvanın Tahmini Yaşı", tip: "select_text", secenekler: ["Yavru (0-6 ay)", "Genç (6 ay-2 yaş)", "Yetişkin (2-7 yaş)", "Yaşlı (7+ yaş)", "Bilinmiyor"], ai_importance: 0.5, zorunlu: false }
+        - { alan_adi: "hayvan_cinsiyet_kb", label: "Cinsiyet", tip: "select", secenekler: ["Erkek", "Dişi", "Bilinmiyor/Belirsiz"], ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "hayvan_renk_desen_kb", label: "Hayvanın Rengi/Desenleri", tip: "textarea", ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "ayirt_edici_ozellikler_kb", label: "Ayırt Edici Özellikleri/İşaretleri", tip: "textarea_rich", ai_importance: 0.8, zorunlu: false }
+        - { alan_adi: "kayboldugu_bulundugu_tarih_saat_kb", label: "Kaybolduğu/Bulunduğu Tarih ve Yaklaşık Saat", tip: "datetime_flexible", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "kayboldugu_bulundugu_adres_detay_kb", label: "Kaybolduğu/Bulunduğu Yer (Detaylı Adres/Konum)", tip: "location_map_input_text", ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "kayboldugu_bulundugu_sehir_ilce_kb", label: "Şehir ve İlçe", tip: "location_dependent_selects", ana_konum_alani_kodu: "kayboldugu_bulundugu_adres_detay_kb", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "tasma_aksesuar_durumu_kb", label: "Üzerindeki Tasma/Aksesuar Bilgileri", tip: "textarea", ai_importance: 0.75, zorunlu: false }
+        - { alan_adi: "mikrocip_bilgisi_kb", label: "Mikroçip Durumu ve Numarası", tip: "select_aciklamali_text", secenekler_map: { "Var (Numarası Biliniyor)": true, "Var (Numarası Bilinmiyor/Okutulmalı)": true, "Yok": false, "Bilinmiyor/Kontrol Edilmedi": false }, ai_importance: 0.8, zorunlu: false }
+        - { alan_adi: "son_goruldugu_yer_ve_davranis_kayip_kb", label: "Son Görüldüğü Yer ve Davranışları (Kayıp İse)", tip: "textarea_rich", bagimli_alan_goster: "ilan_tipi_kb", bagimli_degerler_goster: ["Kayıp Hayvan Bildirimi (Hayvanımı Arıyorum)"], ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "bulundugundaki_davranis_ve_saglik_durumu_buluntu_kb", label: "Bulunduğundaki Davranış ve Sağlık Durumu (Buluntu İse)", tip: "textarea_rich", bagimli_alan_goster: "ilan_tipi_kb", bagimli_degerler_goster: ["Buluntu Hayvan Bildirimi (Hayvan Buldum, Sahibini Arıyorum/Koruyorum)"], ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "iletisim_bilgileri_acil_kb", label: "Acil Ulaşım İçin İletişim Bilgileri", tip: "phone_primary_secondary_email_optional", ai_importance: 0.98, zorunlu: true }
+        - { alan_adi: "kayip_ilani_icin_odul_kb", label: "Ödül Bilgisi (Kayıp İse, İsteğe Bağlı)", tip: "number_currency_text", para_birimi: "TRY", ai_importance: 0.4, zorunlu: false }
+        - { alan_adi: "buluntu_hayvan_gecici_bakim_yeri_kb", label: "Geçici Bakım Yeri ve Koşulları (Buluntu İse)", tip: "textarea", bagimli_alan_goster: "ilan_tipi_kb", bagimli_degerler_goster: ["Buluntu Hayvan Bildirimi (Hayvan Buldum, Sahibini Arıyorum/Koruyorum)"], ai_importance: 0.6, zorunlu: false }
+        - { alan_adi: "fotograf_video_kb", label: "Hayvanın Fotoğrafları/Videoları", tip: "multiple_file_upload_with_preview_guidance", kurallar: {min_fotograf: 1, max_fotograf: 5, onerilen_video_suresi_saniye: 30, kabul_edilen_formatlar: ["jpg", "jpeg", "png", "mp4"]}, ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "ilan_verenin_rolu_kb", label: "İlanı Veren Kişinin Rolü", tip: "select", secenekler: ["Hayvanın Sahibiyim (Kayıp Bildirimi)", "Hayvanı Bulan Kişiyim (Buluntu Bildirimi)", "Görgü Tanığıyım/Yardımcı Olmak İstiyorum"], ai_importance: 0.7, zorunlu: true }
+        - { alan_adi: "hayvanin_genel_karakteri_kisaca_kb", label: "Hayvanın Genel Karakteri (Sahibi Biliyorsa/Bulan Gözlemlediyse)", tip: "textarea", ai_importance: 0.6, zorunlu: false }
+        - { alan_adi: "yakalanma_ve_tutma_zorlugu_buluntu_kb", label: "Yakalanma/Tutulma Zorluğu (Buluntu İse)", tip: "select_aciklamali", secenekler_map: {"Kolayca Yakalandı/Tutuluyor":false, "Ürkek Ama Zararsız, Sabırla Yaklaşılabilir":true, "Çok Korkak/Kaçıyor, Yakalamak Zor":true, "Agresif Tepki Veriyor, Profesyonel Yardım Gerekebilir":true, "Bilgim Yok/Denemedim":false}, bagimli_alan_goster: "ilan_tipi_kb", bagimli_degerler_goster: ["Buluntu Hayvan Bildirimi (Hayvan Buldum, Sahibini Arıyorum/Koruyorum)"], ai_importance: 0.65, zorunlu: false }
+        - { alan_adi: "beslenme_su_durumu_gozlem_buluntu_kb", label: "Beslenme ve Su Durumu Gözlemi (Buluntu İse)", tip: "textarea", bagimli_alan_goster: "ilan_tipi_kb", bagimli_degerler_goster: ["Buluntu Hayvan Bildirimi (Hayvan Buldum, Sahibini Arıyorum/Koruyorum)"], ai_importance: 0.5, zorunlu: false }
+        - { alan_adi: "ihbar_yapilan_kurumlar_ve_sonuc_kb", label: "İhbar Yapılan Kurumlar ve Sonuçları (Varsa)", tip: "multiselect_text_tags_status", secenekler_onerilen: ["Belediye Veteriner İşleri", "En Yakın Barınak", "Polis/Jandarma", "Yerel Hayvan Koruma Dernekleri"], ai_importance: 0.4, zorunlu: false }
+        - { alan_adi: "sosyal_medya_ve_diger_platform_paylasim_linkleri_kb", label: "Sosyal Medya ve Diğer Platform Paylaşım Linkleri", tip: "url_list_platform_detected", ai_importance: 0.3, zorunlu: false }
+
+  - id: "cat_ucretsiz_acildurum"
+    ad: "Acil Durum / İvedi Yardım Çağrısı"
+    slug: "acil-durum-ivedi-yardim-cagrisi"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "acil_durum_tipi", label: "Acil Durum Tipi", tip: "select", secenekler: ["Kaza/Yaralanma", "Hastalık Krizi", "Terk Edilme (savunmasız)", "Kötü Muamele/İhmal", "Doğal Afet", "Yangın", "Zehirlenme Şüphesi", "Sıkışma/Mahsur Kalma"], ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "hayvan_turu_acil", label: "Hayvan Türü", tip: "text", ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "hayvan_sayisi_acil", label: "Etkilenen Hayvan Sayısı", tip: "number_integer", ai_importance: 0.7, zorunlu: true, varsayilan: 1 }
+        - { alan_adi: "olay_yeri_adres_acil", label: "Olay Yeri Adresi", tip: "location_text", ai_importance: 0.98, zorunlu: true }
+        - { alan_adi: "olay_yeri_sehir_ilce_acil", label: "Şehir/İlçe", tip: "location_selects", ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "olay_tarih_saat_acil", label: "Olay Tarih ve Saati", tip: "datetime", ai_importance: 0.8, zorunlu: true }
+        - { alan_adi: "hayvanin_durumu_detay_acil", label: "Hayvanın Durumu (Detaylı)", tip: "textarea", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "talep_edilen_yardim_turu_acil", label: "Talep Edilen Yardım Türü", tip: "multiselect", secenekler: ["Acil Veteriner Müdahalesi", "Nakil Desteği", "Geçici Güvenli Yuva", "Maddi Destek (klinik masrafı)", "Mama/Malzeme Desteği", "Yasal Yardım/İhbar", "Kurtarma Ekibi"], ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "iletisim_bilgileri_cok_acil", label: "ÇOK ACİL İletişim Bilgileri", tip: "phone_validated_multiline", ai_importance: 1.0, zorunlu: true }
+        - { alan_adi: "fotograf_video_durum_acil", label: "Fotoğraf/Video (Durumu Gösteren)", tip: "file_upload_optional", ai_importance: 0.8, zorunlu: false }
+        - { alan_adi: "ihbar_yapan_kisi_rolu_acil", label: "İhbar Yapan Kişinin Rolü", tip: "select", secenekler: ["Gören Kişi", "İlk Müdahaleyi Yapan", "Hayvan Sahibi (eğer acilse)"], ai_importance: 0.6, zorunlu: true }
+
+  - id: "cat_ucretsiz_topluluk"
+    ad: "Topluluk Etkinlikleri ve Buluşmaları"
+    slug: "topluluk-etkinlikleri-bulusmalari"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "etkinlik_tipi_topluluk", label: "Etkinlik Tipi", tip: "multiselect", secenekler: ["Sosyal Buluşma/Tanışma", "Eğitim/Seminer/Webinar", "Gönüllülük/Barınak Ziyareti", "Gezdirme Grubu", "Farkındalık/Protesto Etkinliği", "Festival/Şenlik", "Kermes/Bağış Etkinliği", "Online Sohbet/Forum", "Atölye Çalışması", "Spor/Aktivite Etkinliği (Köpek Koşusu vb.)", "Irk Özel Buluşması"], ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "hedef_kitle_hayvan_turu_topluluk", label: "Hangi Hayvan Türleriyle İlgili?", tip: "multiselect", secenekler: ["Tüm Hayvanseverler", "Köpek Sahipleri/Severleri", "Kedi Sahipleri/Severleri", "Kuş Severler", "Kemirgen Severler", "Egzotik Hayvan Sahipleri (Bilgili)", "Belirli Bir Irka Özel"], ai_importance: 0.75, zorunlu: false }
+        - { alan_adi: "etkinlik_formati_topluluk", label: "Etkinlik Formatı", tip: "select", secenekler: ["Fiziksel (Belirli Bir Yerde)", "Online (Çevrimiçi)", "Hibrit (Fiziksel ve Online)"], ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "etkinlik_yeri_sehir_ilce_topluluk", label: "Etkinlik Yeri (Şehir/İlçe)", tip: "location_dependent_selects", bagimli_alan_goster: "etkinlik_formati_topluluk", bagimli_degerler_goster: ["Fiziksel (Belirli Bir Yerde)", "Hibrit (Fiziksel ve Online)"], ai_importance: 0.9, zorunlu: false }
+        - { alan_adi: "etkinlik_yeri_adres_detay_topluluk", label: "Detaylı Adres / Online Platform Linki", tip: "textarea_map_link", ai_importance: 0.8, zorunlu: true }
+        - { alan_adi: "etkinlik_tarih_araligi_topluluk", label: "Etkinlik Tarihi ve Saati", tip: "datetime_range_recurring", ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "katilim_ucreti_durumu_topluluk", label: "Katılım Ücreti", tip: "select_aciklamali_text", secenekler_map: {"Ücretsiz":false, "Ücretli":true, "Bağış Esaslı":true, "Belirli Koşullarda Ücretsiz":true}, ai_importance: 0.7, zorunlu: true }
+        - { alan_adi: "kayit_kontenjan_durumu_topluluk", label: "Kayıt ve Kontenjan Durumu", tip: "select_text_area", secenekler: ["Kayıt Gerekli", "Kayıt Gerekmiyor (Serbest Katılım)", "Kontenjan Sınırlı", "Kontenjan Doldu", "Kayıtlar Henüz Açılmadı"], ai_importance: 0.8, zorunlu: false }
+        - { alan_adi: "hayvan_katilimi_izin_durumu_topluluk", label: "Etkinliğe Hayvan Getirilebilir Mi?", tip: "select_aciklamali", secenekler_map: {"Evet (Belirli Kurallarla)":true, "Hayır (Sadece İnsan Katılımcılar)":false, "Sadece Belirli Tür Hayvanlar":true, "Danışınız":false}, ai_importance: 0.65, zorunlu: false }
+        - { alan_adi: "organizator_bilgisi_topluluk", label: "Organizatör/Düzenleyen", tip: "text_url", ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "etkinlik_ana_temasi_etiketler_topluluk", label: "Etkinlik Ana Teması/Etiketleri", tip: "multiselect_text_tags", secenekler_onerilen: ["eğitim", "sosyalleşme", "gönüllülük", "farkındalık", "sağlık", "bakım", "davranış", "yasalar", "barınak yardımı", "köpek gezdirme", "kedi sevgisi", "kuş gözlemi"], ai_importance: 0.8, zorunlu: false }
+
+  - id: "cat_ucretsiz_destekhizmeti"
+    ad: "Gönüllü Destek Hizmetleri (Ücretsiz)"
+    slug: "gonullu-destek-hizmetleri-ucretsiz"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "destek_tipi_gonullu", label: "Sunulan Destek Tipi", tip: "select", secenekler: ["Geçici Bakım (Evde)", "Köpek Gezdirme", "Kedi/Diğer Hayvan Ev Ziyareti (Besleme/Oyun)", "Deneyim/Bilgi Paylaşımı", "Basit Tıbbi Olmayan Bakım Yardımı (yaşlı/hasta hayvan için)", "Malzeme Paylaşımı (mama, oyuncak)"], ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "destek_sunulan_hayvan_turu_gonullu", label: "Destek Sunulan Hayvan Türü/Türleri", tip: "multiselect_from_tags", kaynak_etiket_kategorisi: "HAYVAN_TURU", ai_importance: 0.8, zorunlu: true }
+
+  - id: "cat_ucretsiz_bilgiegıtım"
+    ad: "Bilgi Paylaşımı ve Eğitim (Ücretsiz Kaynaklar)"
+    slug: "bilgi-paylasimi-egitim-ucretsiz-kaynaklar"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "bilgi_kategorisi_ana_be", label: "Bilgi Ana Kategorisi", tip: "select", secenekler: ["Bakım", "Sağlık", "Davranış/Eğitim", "Beslenme", "Hayvan Hakları/Yasalar", "Irk Bilgileri", "Genel Bilgiler", "Ekipman/Malzeme Önerileri"], ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "hedef_hayvan_turu_be", label: "Hedef Hayvan Türü", tip: "multiselect_from_tags", kaynak_etiket_kategorisi: "HAYVAN_TURU", ai_importance: 0.8, zorunlu: false }
+        - { alan_adi: "icerik_formati_be", label: "İçerik Formatı", tip: "select", secenekler: ["Makale/Yazı", "Rehber/Kontrol Listesi", "Video Linki", "Podcast Linki", "İnfografik Linki", "Soru-Cevap Başlığı", "Deneyim Paylaşımı"], ai_importance: 0.7, zorunlu: true }
