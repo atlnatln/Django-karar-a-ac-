@@ -1,0 +1,201 @@
+ana_kategoriler:
+  - id: "animal_tur_kopek"
+    ad: "Köpek"
+    slug: "kopek"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "irk_secimi_kopek", label: "Köpek Irkı", tip: "select_dynamic_searchable", kaynak_model_kopek: "KopekIrkTablosu", ai_importance: 0.95, zorunlu: false }
+        - { alan_adi: "yas_grubu_kopek", label: "Yaş Grubu", tip: "select", secenekler: ["Yavru (0-1 yaş)", "Genç (1-3 yaş)", "Yetişkin (3-7 yaş)", "Yaşlı (7+ yaş)"], ai_importance: 0.85 }
+        - { alan_adi: "cinsiyet_kopek", label: "Cinsiyet", tip: "select", secenekler: ["Erkek", "Dişi"], ai_importance: 0.7 }
+        - { alan_adi: "boyut_kopek", label: "Boyut", tip: "select", secenekler: ["Çok Küçük (Toy)", "Küçük", "Orta", "Büyük", "Dev"], ai_importance: 0.8 }
+        - { alan_adi: "enerji_seviyesi_kopek", label: "Enerji Seviyesi", tip: "select", secenekler: ["Düşük", "Orta", "Yüksek", "Çok Yüksek"], ai_importance: 0.9 }
+        - { alan_adi: "egitim_seviyesi_kopek", label: "Eğitim Seviyesi", tip: "select", secenekler: ["Eğitimsiz", "Temel İtaat", "İleri İtaat", "Özel Eğitimli (örn: terapi köpeği)"], ai_importance: 0.8 }
+        - { alan_adi: "cocuk_uyumu_kopek", label: "Çocuklarla Uyumu", tip: "select", secenekler: ["Çok İyi", "İyi", "Dikkatli Olunmalı", "Tavsiye Edilmez"], ai_importance: 0.85 }
+        - { alan_adi: "diger_kopek_uyumu_kopek", label: "Diğer Köpeklerle Uyumu", tip: "select", secenekler: ["Çok İyi", "İyi", "Dikkatli Olunmalı", "Tek Yaşamalı"], ai_importance: 0.75 }
+        - { alan_adi: "diger_hayvan_uyumu_kopek", label: "Diğer Hayvanlarla Uyumu (kedi, kuş vb.)", tip: "select", secenekler: ["Çok İyi", "İyi", "Dikkatli Olunmalı", "Tavsiye Edilmez"], ai_importance: 0.7 }
+        - { alan_adi: "apartman_uyumu_kopek", label: "Apartman Yaşamına Uygunluk", tip: "select", secenekler: ["Uygun", "Orta Düzeyde Uygun", "Uygun Değil"], ai_importance: 0.75 }
+        - { alan_adi: "bahce_ihtiyaci_kopek", label: "Bahçe İhtiyacı", tip: "select", secenekler: ["Yok", "Küçük Bahçe Yeterli", "Geniş Bahçe Gerekli"], ai_importance: 0.7 }
+        - { alan_adi: "tuy_dokme_seviyesi_kopek", label: "Tüy Dökme Seviyesi", tip: "select", secenekler: ["Yok/Çok Az", "Az", "Orta", "Çok"], ai_importance: 0.65 }
+        - { alan_adi: "bakim_ihtiyaci_kopek", label: "Bakım İhtiyacı", tip: "select", secenekler: ["Düşük (haftalık fırçalama)", "Orta (düzenli fırçalama/traş)", "Yüksek (profesyonel bakım)"], ai_importance: 0.7 }
+        - { alan_adi: "saglik_durumu_genel_kopek", label: "Genel Sağlık Durumu", tip: "select_aciklamali", secenekler_map: {"Sağlıklı": false, "Kronik Rahatsızlığı Var": true, "Özel Bakım Gerekiyor": true}, aciklama_label: "Sağlık Detayı/Notu", ai_importance: 0.9 }
+        - { alan_adi: "saglik_durumu_ozel_not_kopek", label: "Sağlık Durumu Özel Not", tip: "textarea", ai_importance: 0.8, zorunlu: false, bagimli_alan_goster: "saglik_durumu_genel_kopek", bagimli_degerler_goster: ["Kronik Rahatsızlığı Var", "Özel Bakım Gerekiyor"] }
+        - { alan_adi: "kisirlastirilmis_kopek", label: "Kısırlaştırılmış Mı?", tip: "boolean_unknown", secenekler: ["Evet", "Hayır", "Bilinmiyor"], ai_importance: 0.7 }
+        - { alan_adi: "asi_durumu_kopek", label: "Aşı Durumu", tip: "select", secenekler: ["Tam", "Eksik", "Bilinmiyor"], ai_importance: 0.8 }
+        - { alan_adi: "tuvalet_aliskanligi_kopek", label: "Tuvalet Alışkanlığı", tip: "select", secenekler: ["Var (dışarı/ped)", "Kısmen Var", "Yok"], ai_importance: 0.85 }
+        - { alan_adi: "yalniz_kalma_toleransi_kopek", label: "Yalnız Kalma Toleransı", tip: "select", secenekler: ["İyi (4+ saat)", "Orta (2-4 saat)", "Zayıf (sürekli ilgi)"], ai_importance: 0.7 }
+        - { alan_adi: "oyunculuk_seviyesi_kopek", label: "Oyunculuk Seviyesi", tip: "select", secenekler: ["Düşük", "Orta", "Yüksek"], ai_importance: 0.8 }
+        - { alan_adi: "koruma_icgudusu_kopek", label: "Koruma İçgüdüsü", tip: "select", secenekler: ["Düşük", "Orta", "Yüksek"], ai_importance: 0.6 }
+        - { alan_adi: "havlama_egilimi_kopek", label: "Havlama Eğilimi", tip: "select", secenekler: ["Az", "Orta", "Çok"], ai_importance: 0.5 }
+        - { alan_adi: "seyahat_uyumu_kopek", label: "Seyahat Uyumu", tip: "select", secenekler: ["İyi", "Orta", "Zayıf"], ai_importance: 0.5 }
+        - { alan_adi: "ilk_sahip_uygunlugu_kopek", label: "İlk Kez Sahiplenecekler İçin Uygunluk", tip: "select", secenekler: ["Uygun", "Deneyim Gerektirir", "Uygun Değil"], ai_importance: 0.8 }
+        - { alan_adi: "hipoalerjenik_kopek", label: "Hipoalerjenik Özellik", tip: "boolean_unknown", secenekler: ["Evet", "Hayır", "Bilinmiyor"], ai_importance: 0.4 }
+        - { alan_adi: "renk_kopek", label: "Renk", tip: "tags_dynamic", secenekler_onerilen: ["Siyah", "Beyaz", "Kahverengi", "Sarı (Altın Sarısı)", "Kızıl", "Gri", "Krem", "Mavi Merle", "Kızıl Merle", "Brindle (Çizgili)", "Sable", "Benekli", "Alacalı (Parti-color)", "Tricolor (Üç Renkli)"], ai_importance: 0.6 }
+        - { alan_adi: "karakter_ozellikleri_kopek", label: "Karakter Özellikleri", tip: "multiselect_from_tags", kaynak_etiket_kategorisi: "MIZAC_VE_KISILIK", ai_importance: 0.85 }
+        - { alan_adi: "egzersiz_ihtiyaci_gunluk_kopek", label: "Günlük Egzersiz İhtiyacı", tip: "select", secenekler: ["30dk az", "30-60dk", "60+ dk"], ai_importance: 0.8 }
+        - { alan_adi: "isirma_gecmisi_kopek", label: "Isırma Geçmişi", tip: "select_aciklamali", secenekler_map: {"Yok":false, "Savunma Amaçlı":true, "Bilinmiyor":false}, aciklama_label: "Detay", ai_importance: 0.7 }
+        - { alan_adi: "mikrocip_durumu_kopek", label: "Mikroçip Durumu", tip: "boolean", ai_importance: 0.65 }
+
+  - id: "animal_tur_kedi"
+    ad: "Kedi"
+    slug: "kedi"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "irk_secimi_kedi", label: "Kedi Irkı", tip: "select_dynamic_searchable", kaynak_model_tahmini: "KediIrkTablosu", ai_importance: 0.9, zorunlu: false }
+        - { alan_adi: "yas_grubu_kedi", label: "Yaş Grubu", tip: "select", secenekler: ["Yavru (0-6 ay)", "Genç (6 ay-2 yaş)", "Yetişkin (2-8 yaş)", "Yaşlı (8+ yaş)"], ai_importance: 0.85 }
+        - { alan_adi: "cinsiyet_kedi", label: "Cinsiyet", tip: "select", secenekler: ["Erkek", "Dişi"], ai_importance: 0.7 }
+        - { alan_adi: "kil_uzunlugu_kedi", label: "Kıl Uzunluğu", tip: "select", secenekler: ["Kısa", "Orta", "Uzun", "Tüysüz"], ai_importance: 0.75 }
+        - { alan_adi: "sosyallik_seviyesi_kedi", label: "Sosyallik Seviyesi", tip: "select", secenekler: ["Çok Sosyal (herkese yakın)", "Sosyal (tanıdıklara yakın)", "Utangaç (zamanla alışır)", "Bağımsız (kendi halinde)"], ai_importance: 0.8 }
+        - { alan_adi: "dis_mekan_uyumu_kedi", label: "Dış Mekan Uyumu", tip: "select", secenekler: ["Sadece İç Mekan", "Güvenli Dış Alan Erişimi (balkon, bahçe)", "Dış Mekana Alışkın"], ai_importance: 0.6 }
+        - { alan_adi: "cocuk_uyumu_kedi", label: "Çocuklarla Uyumu", tip: "select", secenekler: ["Çok İyi", "İyi", "Dikkatli Olunmalı (özellikle küçük çocuklarla)", "Tavsiye Edilmez"], ai_importance: 0.8 }
+        - { alan_adi: "diger_kedi_uyumu_kedi", label: "Diğer Kedilerle Uyumu", tip: "select", secenekler: ["Çok İyi", "İyi", "Dikkatli Olunmalı", "Tek Kedi Olmalı"], ai_importance: 0.7 }
+        - { alan_adi: "diger_hayvan_uyumu_kedi", label: "Diğer Hayvanlarla Uyumu (köpek vb.)", tip: "select", secenekler: ["Çok İyi", "İyi", "Dikkatli Olunmalı", "Tavsiye Edilmez"], ai_importance: 0.65 }
+        - { alan_adi: "enerji_seviyesi_kedi", label: "Enerji Seviyesi", tip: "select", secenekler: ["Düşük (sakin)", "Orta (oyuncu)", "Yüksek (çok hareketli)"], ai_importance: 0.8 }
+        - { alan_adi: "oyunculuk_seviyesi_kedi", label: "Oyunculuk Seviyesi", tip: "select", secenekler: ["Sakin", "Orta Derecede Oyuncu", "Çok Oyuncu"], ai_importance: 0.85 }
+        - { alan_adi: "bakim_ihtiyaci_kedi", label: "Bakım İhtiyacı", tip: "select", secenekler: ["Düşük (kısa tüylü)", "Orta (orta/uzun tüylü, düzenli fırçalama)", "Yüksek (özel bakım, banyo)"], ai_importance: 0.7 }
+        - { alan_adi: "saglik_durumu_genel_kedi", label: "Genel Sağlık Durumu", tip: "select_aciklamali", secenekler_map: {"Sağlıklı": false, "Kronik Rahatsızlığı Var": true, "Özel Diyet Gerekiyor": true}, aciklama_label: "Sağlık Detayı/Notu", ai_importance: 0.9 }
+        - { alan_adi: "saglik_durumu_ozel_not_kedi", label: "Sağlık Durumu Özel Not", tip: "textarea", ai_importance: 0.8, zorunlu: false, bagimli_alan_goster: "saglik_durumu_genel_kedi", bagimli_degerler_goster: ["Kronik Rahatsızlığı Var", "Özel Diyet Gerekiyor"] }
+        - { alan_adi: "kisirlastirilmis_kedi", label: "Kısırlaştırılmış Mı?", tip: "boolean_unknown", secenekler: ["Evet", "Hayır", "Bilinmiyor"], ai_importance: 0.75 }
+        - { alan_adi: "asi_durumu_kedi", label: "Aşı Durumu", tip: "select", secenekler: ["Tam", "Eksik", "Bilinmiyor"], ai_importance: 0.8 }
+        - { alan_adi: "tuvalet_aliskanligi_kedi", label: "Tuvalet Alışkanlığı (Kum)", tip: "select", secenekler: ["Kum Eğitimi Var", "Kısmen Var", "Yok"], ai_importance: 0.9 }
+        - { alan_adi: "kucak_kedisi_kedi", label: "Kucak Kedisi Mi?", tip: "boolean_maybe", secenekler: ["Evet", "Hayır", "Bazen (ruh haline göre)"], ai_importance: 0.6 }
+        - { alan_adi: "ses_seviyesi_miyavlama_kedi", label: "Ses Seviyesi (Miyavlama)", tip: "select", secenekler: ["Sessiz", "Orta", "Konuşkan (çok miyavlar)"], ai_importance: 0.5 }
+        - { alan_adi: "tirnak_kesme_toleransi_kedi", label: "Tırnak Kesme Toleransı", tip: "select", secenekler: ["İyi", "Orta", "Zor"], ai_importance: 0.4 }
+        - { alan_adi: "mobilya_tirmalama_egilimi_kedi", label: "Mobilya Tırmalama Eğilimi", tip: "select_aciklamali", secenekler_map: {"Az":false, "Orta":true, "Çok":true}, aciklama_label: "Tırmalama Tahtası Kullanımı?", ai_importance: 0.5 }
+        - { alan_adi: "ilk_sahip_uygunlugu_kedi", label: "İlk Kez Sahiplenecekler İçin Uygunluk", tip: "select", secenekler: ["Uygun", "Deneyim Gerektirebilir (bazı ırklar)", "Uygun Değil"], ai_importance: 0.75 }
+        - { alan_adi: "alerji_potansiyeli_insan_kedi", label: "İnsanlarda Alerji Potansiyeli", tip: "select", secenekler: ["Düşük (bazı ırklar)", "Orta", "Yüksek"], ai_importance: 0.4 }
+        - { alan_adi: "renk_desen_kedi", label: "Renk ve Desen", tip: "tags_dynamic", secenekler_onerilen: ["Siyah", "Beyaz", "Sarı (Sarman)", "Gri (Mavi)", "Krem", "Kızıl (Tarçın)", "Çikolata", "Lila", "Tekir (Tabby - Klasik, Uskumru, Benekli, Parçalı)", "Calico (Üç Renkli)", "Tortoiseshell (Alaca)", "Van Deseni", "Siyam Deseni (Point)", "Benekli", "Dumanlı", "Gölgeli"], ai_importance: 0.6 }
+        - { alan_adi: "karakter_ozellikleri_kedi", label: "Karakter Özellikleri", tip: "multiselect_from_tags", kaynak_etiket_kategorisi: "MIZAC_VE_KISILIK", ai_importance: 0.85 }
+        - { alan_adi: "avcilik_icgudusu_kedi", label: "Avcılık İçgüdüsü", tip: "select", secenekler: ["Düşük", "Orta", "Yüksek"], ai_importance: 0.5 }
+        - { alan_adi: "su_ile_iliskisi_kedi", label: "Su İle İlişkisi", tip: "select", secenekler: ["Sever (nadir)", "Nötr", "Sevmez"], ai_importance: 0.3 }
+        - { alan_adi: "mikrocip_durumu_kedi", label: "Mikroçip Durumu", tip: "boolean", ai_importance: 0.6 }
+
+  - id: "animal_tur_kus"
+    ad: "Kuş"
+    slug: "kus"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "tur_kus", label: "Kuş Türü", tip: "select_dynamic_searchable", kaynak_model_tahmini: "KusTurTablosu", ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "yas_grubu_kus", label: "Yaş Grubu", tip: "select_text", secenekler: ["Yavru (bilezik yaşı/tahmini)", "Genç (Yetişkinliğe Yakın)", "Yetişkin"], ai_importance: 0.7 }
+        - { alan_adi: "cinsiyet_kus", label: "Cinsiyet", tip: "select", secenekler: ["Erkek", "Dişi", "Bilinmiyor (DNA testi gerekebilir/görsel ayrım zor)"], ai_importance: 0.6 }
+        - { alan_adi: "konusma_kabiliyeti_kus", label: "Konuşma/Taklit Kabiliyeti", tip: "select", secenekler: ["Yok/Çok Az", "Birkaç Kelime/Ses Taklidi", "Cümle Kurabilir/Geniş Taklit Yeteneği", "Çok İyi Konuşur/Taklitçi"], ai_importance: 0.85 }
+        - { alan_adi: "ses_seviyesi_otme_kus", label: "Ses Seviyesi (Ötme/Çağrı)", tip: "select", secenekler: ["Sessiz/Nadiren Ses Çıkarır", "Orta (Melodik/Hoş Sesli)", "Yüksek/Gürültülü (Sık ve Güçlü Çağrılar)"], ai_importance: 0.7 }
+        - { alan_adi: "egitim_seviyesi_kus", label: "Eğitim Seviyesi/İnsana Alışkanlık", tip: "select", secenekler: ["Eğitimsiz/Vahşi", "Ele Alışkın/Temel Komutlar", "İleri Düzeyde Eğitilmiş (Numara, Konuşma)", "Serbest Uçuş Eğitimli (İç/Dış Mekan)"], ai_importance: 0.7 }
+        - { alan_adi: "sosyallik_diger_kuslarla_kus", label: "Diğer Kuşlarla Uyumu", tip: "select", secenekler: ["Tek Yaşamalı (Agresif/Asosyal)", "Kendi Türüyle İyi Anlaşır", "Farklı Türlerle Uygun Koşullarda Yaşayabilir", "Sürü Halinde Yaşamaya Alışkın"], ai_importance: 0.6 }
+        - { alan_adi: "sosyallik_insanlarla_kus", label: "İnsanlarla Etkileşimi", tip: "select", secenekler: ["Utangaç/İnsandan Kaçar", "Alışkın/Meraklı", "Çok Sosyal/İlgi ve Oyun Bekler", "Sahibine Bağlı/Tek Kişiye Yakınlık"], ai_importance: 0.75 }
+        - { alan_adi: "kafes_boyutu_ihtiyaci_kus", label: "Minimum Kafes/Yaşam Alanı İhtiyacı", tip: "select", secenekler: ["Küçük Boy Kafes (örn: kanarya, ispinoz)", "Orta Boy Kafes (örn: muhabbet, sevda)", "Büyük Boy Kafes/Salma (örn: papağan türleri)", "Oda Büyüklüğünde Salma (Aviary)"], ai_importance: 0.8 }
+        - { alan_adi: "bakim_ihtiyaci_beslenme_kus", label: "Beslenme İhtiyacı (Özel Diyet Gereksinimi)", tip: "textarea", ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "CITES_belgesi_durumu_kus", label: "CITES Belgesi Durumu (Gerekliyse)", tip: "select_aciklamali", secenekler_map: {"Gerekmiyor":false, "Var (Belge No Eklenebilir)":true, "Başvurusu Yapıldı/Beklemede":true, "Bilgim Yok/Araştırılmalı":false}, aciklama_label: "Belge No/Detay", ai_importance: 0.9, zorunlu: false }
+        - { alan_adi: "elde_tasima_aliskanligi_kus", label: "Ele Gelme/Omuza Konma Alışkanlığı", tip: "select", secenekler: ["Yok/Korkar", "Nadiren/Çekinerek", "İstekli/Sever"], ai_importance: 0.65 }
+        - { alan_adi: "oyuncak_ve_aktivite_ihtiyaci_kus", label: "Oyuncak ve Aktivite İhtiyacı", tip: "select", secenekler: ["Düşük", "Orta (Birkaç oyuncak yeterli)", "Yüksek (Sürekli yeni uyaran ve aktivite ister)"], ai_importance: 0.7 }
+        - { alan_adi: "saglik_durumu_genel_kus", label: "Genel Sağlık Durumu", tip: "select_aciklamali", secenekler_map: {"Sağlıklı ve Dinç": false, "Geçmişte Sağlık Sorunu Yaşadı (Şu an İyi)": true, "Kronik Rahatsızlığı Var (Yönetilebilir)": true, "Özel Bakım/İlaç Gerekiyor": true}, aciklama_label: "Sağlık Detayı/Notu", ai_importance: 0.85 }
+        - { alan_adi: "bilezik_mikrocip_bilgisi_kus", label: "Bilezik veya Mikroçip Bilgisi", tip: "text", ai_importance: 0.5, zorunlu: false }
+        - { alan_adi: "renk_desen_kus", label: "Tüy Rengi ve Desenleri", tip: "tags_dynamic", secenekler_onerilen: ["Mavi", "Yeşil", "Sarı", "Beyaz", "Gri", "Lutino", "Albino", "Parçalı", "Benekli", "Opalin", "Spangle", "Cinnamon", "Violet", "Pastel"], ai_importance: 0.6, zorunlu: false }
+
+  - id: "animal_tur_balik"
+    ad: "Balık"
+    slug: "balik"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "tur_balik", label: "Balık Türü", tip: "select_dynamic_searchable", kaynak_model_tahmini: "BalikTurTablosu", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "su_tipi_balik", label: "Su Tipi", tip: "select", secenekler: ["Tatlı Su", "Tuzlu Su", "Acı Su"], ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "renk_desen_balik", label: "Renk ve Desen", tip: "tags_dynamic", secenekler_onerilen: ["Kırmızı", "Mavi", "Sarı", "Siyah", "Beyaz", "Turuncu", "Yeşil", "Metalik", "Benekli", "Çizgili", "Alaca", "Neon", "Pastel", "İrideli"], ai_importance: 0.7 }
+        - { alan_adi: "boyut_yetiskin_balik", label: "Yetişkin Boyutu (Tahmini)", tip: "text_range_cm", ai_importance: 0.65 }
+        - { alan_adi: "akvaryum_hacmi_min_balik", label: "Minimum Akvaryum Hacmi (Litre)", tip: "number_integer", ai_importance: 0.8 }
+        - { alan_adi: "su_sicakligi_ideal_balik", label: "İdeal Su Sıcaklığı (°C)", tip: "text_range_temperature", ai_importance: 0.7 }
+        - { alan_adi: "ph_degeri_ideal_balik", label: "İdeal pH Değeri", tip: "text_range_ph", ai_importance: 0.6 }
+        - { alan_adi: "su_sertligi_ideal_balik", label: "İdeal Su Sertliği (GH/KH)", tip: "text", ai_importance: 0.5, zorunlu: false }
+        - { alan_adi: "beslenme_tipi_balik", label: "Beslenme Tipi", tip: "select", secenekler: ["Otçul (Herbivore)", "Etçil (Carnivore)", "Hepçil (Omnivore)", "Mikro Yem Avcısı (Micro-predator)"], ai_importance: 0.75 }
+        - { alan_adi: "yuzme_seviyesi_balik", label: "Akvaryumda Yüzme Seviyesi", tip: "multiselect", secenekler: ["Dip Seviye", "Orta Seviye", "Yüzey Seviyesi", "Tüm Seviyeler"], ai_importance: 0.5 }
+        - { alan_adi: "sosyallik_diger_baliklarla_balik", label: "Diğer Balıklarla Uyumu (Mizaç)", tip: "select", secenekler: ["Barışçıl (Karma akvaryum için uygun)", "Yarı Agresif (Dikkatli tür seçimi gerektirir)", "Agresif (Tek tür veya özel tank arkadaşları)", "Sürü Balığı (Kendi türüyle grup halinde yaşamalı)"], ai_importance: 0.8 }
+        - { alan_adi: "bakim_zorlugu_balik", label: "Bakım Zorluğu", tip: "select", secenekler: ["Kolay (Başlangıç seviyesi için uygun)", "Orta (Biraz deneyim gerektirir)", "Zor (Deneyimli akvaristler için)", "Çok Zor (Uzmanlık gerektirir)"], ai_importance: 0.8 }
+        - { alan_adi: "ureme_zorlugu_balik", label: "Üreme Zorluğu (Akvaryum Ortamında)", tip: "select", secenekler: ["Kolay Ürer", "Orta Zorlukta Ürer", "Zor Ürer", "Çok Zor/İmkansız Ürer"], ai_importance: 0.4, zorunlu: false }
+        - { alan_adi: "kaynagi_balik", label: "Kaynağı (Menşei)", tip: "select", secenekler: ["Akvaryum Üretimi (Tank Bred)", "Doğadan Yakalanmış (Wild Caught - Yasal ve belgeli olmalı)", "Bilinmiyor"], ai_importance: 0.5, zorunlu: false }
+        - { alan_adi: "bitki_uyumu_balik", label: "Bitkili Akvaryum Uyumu", tip: "select", secenekler: ["Bitkilere Zarar Vermez", "Bazı Dayanıklı Bitkilerle Uygun", "Bitkileri Yiyebilir/Sökebilir", "Bitkili Akvaryum İçin Tavsiye Edilmez"], ai_importance: 0.6 }
+        - { alan_adi: "saglik_durumu_genel_balik", label: "Genel Sağlık Durumu", tip: "select_aciklamali", secenekler_map: {"Sağlıklı ve Aktif": false, "Karantina Sürecinde": true, "Geçmişte Tedavi Gördü (Şu an İyi)": true, "Gözlemlenen Rahatsızlık Var (Açıklama Gerekli)": true}, aciklama_label: "Sağlık Detayı/Notu", ai_importance: 0.85 }
+        - { alan_adi: "kac_adet_satilik_balik", label: "Kaç Adet Mevcut/Satılık", tip: "number_integer_text", ai_importance: 0.7, zorunlu: true }
+        - { alan_adi: "ozel_notlar_balik", label: "Balık Hakkında Ek Notlar", tip: "textarea", ai_importance: 0.5, zorunlu: false }
+
+  - id: "animal_tur_kemirgen"
+    ad: "Kemirgen ve Küçük Evcil Dostlar"
+    slug: "kemirgen-kucuk-evcil"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "tur_kemirgen", label: "Tür (Kemirgen/Küçük Evcil)", tip: "select_dynamic_searchable", kaynak_model_tahmini: "KemirgenTurTablosu", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "yas_grubu_kemirgen", label: "Yaş Grubu", tip: "select", secenekler: ["Yavru (0-3 ay)", "Genç (3-9 ay)", "Yetişkin (9 ay+)"], ai_importance: 0.7 }
+        - { alan_adi: "cinsiyet_kemirgen", label: "Cinsiyet", tip: "select", secenekler: ["Erkek", "Dişi", "Bilinmiyor/Belirsiz"], ai_importance: 0.6 }
+        - { alan_adi: "sosyallik_kendi_turuyle_kemirgen", label: "Kendi Türüyle Sosyalliği", tip: "select", secenekler: ["Tek Yaşamalı (örn: Suriye Hamster)", "Çift/Grup Halinde Yaşamalı (örn: Guinea Pig, Fareler, Gerbiller)", "Duruma Göre Değişir (örn: Tavşanlar kısırlaştırma ve tanıştırmaya bağlı)"], ai_importance: 0.75 }
+        - { alan_adi: "sosyallik_insanlarla_kemirgen", label: "İnsanlarla Etkileşimi/Ele Alışkınlığı", tip: "select", secenekler: ["Çok Sosyal/İlgi Sever", "Ele Alışkın/İnsana Yakın", "Çekingen/Sabır Gerektirir", "Sadece Gözlem İçin Uygun"], ai_importance: 0.7 }
+        - { alan_adi: "aktivite_zamani_kemirgen", label: "Aktif Olduğu Zaman Dilimi", tip: "select", secenekler: ["Gece Aktif (örn: Hamster, Chinchilla)", "Gündüz Aktif (örn: Guinea Pig, Tavşan)", "Alacakaranlık/Şafak Vakti Aktif (örn: Gerbil)"], ai_importance: 0.6 }
+        - { alan_adi: "kafes_yasam_alani_ihtiyaci_kemirgen", label: "Kafes/Yaşam Alanı İhtiyacı", tip: "select_text_area", secenekler: ["Küçük Boy (tekil küçük türler için min.)", "Orta Boy (çiftler veya daha büyük tekiller için)", "Büyük Boy (tavşan, guinea pig için geniş alan)", "Çok Katlı/Tünelli Sistemler", "Oda İçinde Serbest Alan (gözetimli)"], ai_importance: 0.8, zorunlu: true }
+        - { alan_adi: "beslenme_diyet_ozellikleri_kemirgen", label: "Beslenme ve Diyet Özellikleri", tip: "textarea", ai_importance: 0.75, zorunlu: true }
+        - { alan_adi: "bakim_zorlugu_deneyim_kemirgen", label: "Bakım Zorluğu / Gerekli Deneyim", tip: "select", secenekler: ["Başlangıç Seviyesi (Çocuklar için uygun, az bakım)", "Orta Seviye (Düzenli bakım ve bilgi gerektirir)", "Deneyim Gerektirir (Hassas tür, özel ihtiyaçlar)"], ai_importance: 0.7 }
+        - { alan_adi: "ortalama_yasam_suresi_bilgisi_kemirgen", label: "Ortalama Yaşam Süresi (Türe Göre)", tip: "text", ai_importance: 0.5, zorunlu: false }
+        - { alan_adi: "renk_tuy_tipi_kemirgen", label: "Renk ve Tüy Tipi", tip: "tags_dynamic", secenekler_onerilen: ["Albino", "Siyah", "Beyaz", "Gri", "Kahverengi", "Krem", "Altın Sarısı", "Benekli", "Çizgili", "Dalmaçyalı", "Uzun Tüylü", "Kısa Tüylü", "Rex (Kıvırcık)", "Satin (Parlak)", "Teddy", "Angora"], ai_importance: 0.6, zorunlu: false }
+        - { alan_adi: "saglik_durumu_genel_kemirgen", label: "Genel Sağlık Durumu", tip: "select_aciklamali", secenekler_map: {"Sağlıklı": false, "Bilinen Bir Rahatsızlığı Yok": false, "Özel Dikkat/Takip Gerektiren Durum": true}, aciklama_label: "Sağlık Detayı/Notu", ai_importance: 0.8 }
+        - { alan_adi: "mikrocip_durumu_kemirgen", label: "Mikroçip Durumu", tip: "boolean", ai_importance: 0.5 }
+
+  - id: "animal_tur_surungen"
+    ad: "Sürüngen"
+    slug: "surungen"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "tur_surungen", label: "Sürüngen Türü", tip: "select_dynamic_searchable", kaynak_model_tahmini: "SurungenTurTablosu", ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "yas_grubu_surungen", label: "Yaş Grubu", tip: "select", secenekler: ["Yavru (Hatchling/Baby)", "Genç (Juvenile/Subadult)", "Yetişkin (Adult)"], ai_importance: 0.75 }
+        - { alan_adi: "cinsiyet_surungen", label: "Cinsiyet", tip: "select", secenekler: ["Erkek", "Dişi", "Bilinmiyor (Bazı türlerde belirlemek zor/test gerekir)"], ai_importance: 0.65 }
+        - { alan_adi: "boyut_yetiskin_surungen", label: "Yetişkin Boyutu (Tahmini)", tip: "text_range_cm_gr", ai_importance: 0.7 }
+        - { alan_adi: "renk_desen_morph_surungen", label: "Renk, Desen ve Morph Bilgisi", tip: "tags_dynamic", secenekler_onerilen: ["Normal (Wild Type)", "Albino", "Melanistik", "Hipomelanistik", "Anerythristic", "Pastel", "Striped (Çizgili)", "Banded (Bantlı)", "Spotted (Benekli)", "Patternless (Desensiz)", "Red (Kırmızı)", "Orange (Turuncu)", "Yellow (Sarı)", "Blue (Mavi)", "Green (Yeşil)", "Black (Siyah)", "White (Beyaz)", "Brown (Kahverengi)", "Lavender", "Blizzard", "Banana", "Pinstripe"], ai_importance: 0.8 }
+        - { alan_adi: "beslenme_tipi_surungen", label: "Beslenme Tipi", tip: "select", secenekler: ["Otçul (Herbivore)", "Etçil (Carnivore)", "Böcekçil (Insectivore)", "Hepçil (Omnivore)"], ai_importance: 0.85 }
+        - { alan_adi: "karakter_mizac_surungen", label: "Karakter ve Mizaç", tip: "multiselect", secenekler: ["Sakin", "Meraklı", "Hareketli", "Utangaç/Saklanmayı Seven", "Savunmacı (Nadiren)", "Uysal (Ele Alışkın)", "Bölgeci (Territorial)", "Gündüz Aktif (Diurnal)", "Gece Aktif (Nocturnal)", "Alacakaranlık Aktif (Crepuscular)"], ai_importance: 0.7 }
+        - { alan_adi: "elde_tasima_toleransi_surungen", label: "Ele Alma / Elde Taşıma Toleransı", tip: "select", secenekler: ["Çok İyi (Rahatlıkla ele alınabilir)", "İyi (Sabırlı yaklaşımla alışkın)", "Orta (Sınırlı ve dikkatli olunmalı)", "Zayıf (Stres olur, tavsiye edilmez)", "Sadece Gözlem İçin Uygun"], ai_importance: 0.75 }
+        - { alan_adi: "bakim_zorlugu_surungen", label: "Bakım Zorluğu", tip: "select", secenekler: ["Başlangıç Seviyesi (Kolay)", "Orta Seviye (Araştırma ve özen gerektirir)", "İleri Seviye (Deneyim ve özel ekipman şart)", "Uzman Seviyesi (Çok hassas ve zorlayıcı)"], ai_importance: 0.9 }
+        - { alan_adi: "yasam_alani_kurulumu_surungen", label: "Yaşam Alanı Kurulumu (Teraryum/Vivaryum)", tip: "select_text_area", secenekler: ["Basit Kurulum", "Orta Düzey Kurulum (Isıtma, UVB, nemlendirme)", "Gelişmiş Biyoaktif Kurulum", "Çok Büyük veya Özel Kurulum"], ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "sicaklik_nem_ihtiyaci_surungen", label: "Sıcaklık ve Nem İhtiyaçları", tip: "textarea", ai_importance: 0.8, zorunlu: true }
+        - { alan_adi: "uvb_isik_ihtiyaci_detay_surungen", label: "UVB Işık İhtiyacı ve Kullanılan Lamba", tip: "select_text_area", secenekler: ["Evet, Hayati", "Evet, Faydalı", "Hayır, Gerekli Değil", "Türüne Göre Değişir/Araştırılmalı"], ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "koken_menşei_surungen", label: "Kökeni / Menşei", tip: "select", secenekler: ["Yasal Üretim (Captive Bred - CB)", "Yasal İthalat (Doğrulanabilir Kaynak)", "Uzun Süredir Evde Bakılan (Long Term Captive - LTC)", "Bilinmiyor/Belirtilmedi"], ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "CITES_belgesi_durumu_surungen", label: "CITES Belgesi Durumu (Gerekliyse)", tip: "select_aciklamali", secenekler_map: {"Gerekmiyor (Tür CITES kapsamında değil veya Ek-II için üretici belgesi yeterli)":false, "Var (Belge No ve Detay Eklenebilir)":true, "Başvurusu Yapıldı/Beklemede":true, "Yasal Menşei Kanıtı Var (Fatura, Üretici Sertifikası vb.)":true, "Bilgim Yok/Araştırılmalı":false}, aciklama_label: "Belge No/Detay/Açıklama", ai_importance: 0.9, zorunlu: false }
+        - { alan_adi: "zehirlilik_tehlike_durumu_surungen", label: "Zehirlilik / Potansiyel Tehlike Durumu", tip: "select_text_area", secenekler: ["Zehirli Değil / Tehlikesiz", "Hafif Zehirli (İnsan için ciddi risk oluşturmaz, özel dikkat gerektirir)", "Zehirli (Deneyim ve özel güvenlik önlemleri gerektirir - Sadece uzmanlar için!)", "Büyük ve Güçlü (Fiziksel zarar verme potansiyeli, deneyim gerektirir)"], ai_importance: 0.85, zorunlu: false }
+        - { alan_adi: "saglik_durumu_genel_surungen", label: "Genel Sağlık Durumu", tip: "select_aciklamali", secenekler_map: {"Sağlıklı ve Sorunsuz": false, "Geçmişte Tedavi Gördü (Şu an İyi)": true, "Kronik Rahatsızlığı Var (Yönetilebilir)": true, "Özel Bakım/İlaç Gerekiyor": true, "Gözlem Altında/Yeni Edinildi": true}, aciklama_label: "Sağlık Detayı/Notu", ai_importance: 0.85 }
+        - { alan_adi: "ilk_kez_surungen_sahiplenecek_icin_uygunluk_surungen", label: "İlk Kez Sürüngen Sahiplenecekler İçin Uygunluk", tip: "select", secenekler: ["Uygun (İyi araştırma ve hazırlıkla)", "Şartlı Uygun (Bazı türler, deneyimli bir rehber eşliğinde)", "Tavsiye Edilmez (Deneyim gerektirir)", "Kesinlikle Uygun Değil (Uzmanlık şart)"], ai_importance: 0.8 }
+        - { alan_adi: "ek_notlar_ve_sahiplendirme_sartlari_surungen", label: "Ek Notlar ve Sahiplendirme Şartları", tip: "textarea_rich", ai_importance: 0.6, zorunlu: false }
+        - { alan_adi: "mikrocip_durumu_surungen", label: "Mikroçip Durumu", tip: "boolean_unknown", ai_importance: 0.6 }
+
+  - id: "animal_tur_egzotik"
+    ad: "Egzotik ve Özel Bakım Gerektiren Canlılar"
+    slug: "egzotik-ozel-bakim"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "tur_ana_grup_egzotik", label: "Ana Grup", tip: "select", secenekler: ["Memeli (Özel)", "Sürüngen (Reptil)", "Amfibi", "Omurgasız (Eklembacaklı, Yumuşakça vb.)", "Diğer Özel Türler"], ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "tur_detay_bilimsel_ad_egzotik", label: "Tür Detayı (Latince Adıyla Birlikte)", tip: "text_suggestion_api", kaynak_model_tahmini: "EgzotikTurVeritabaniAPI", ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "bakim_zorlugu_deneyim_seviyesi_egzotik", label: "Bakım Zorluğu ve Gerekli Deneyim Seviyesi", tip: "select", secenekler: ["Orta (Detaylı araştırma ve özel ekipman gerektirir)", "Zor (İleri düzey bilgi, deneyim ve hassas bakım şart)", "Çok Zor (Sadece profesyoneller veya uzun yıllar deneyimli uzmanlar için)"], ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "CITES_belgesi_durumu_egzotik", label: "CITES Belgesi Durumu", tip: "select_aciklamali", secenekler_map: {"Gerekmiyor":false, "Var (Belge No ve Detay Eklenebilir)":true, "Başvurusu Yapıldı/Beklemede":true, "Yasal Menşei Kanıtı Var":true, "Bilgim Yok/Araştırılmalı":false}, aciklama_label: "Belge No/Detay/Açıklama", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "ilk_sahip_uygunlugu_egzotik", label: "İlk Kez Egzotik Hayvan Sahiplenecekler İçin Uygunluk", tip: "select", secenekler: ["Kesinlikle Uygun Değil", "Sadece Belirli Koşullar ve Kapsamlı Hazırlıkla Düşünülebilir"], ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "yasam_alani_kurulumu_egzotik", label: "Yaşam Alanı (Terraryum/Vivaryum/Akvaryum) Kurulumu ve Özellikleri", tip: "textarea_rich", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "sicaklik_nem_gereksinimi_egzotik", label: "Sıcaklık ve Nem Gereksinimleri", tip: "text", ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "beslenme_diyet_tipi_egzotik", label: "Beslenme Tipi ve Özel Diyet Gereksinimleri", tip: "textarea_rich", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "ortalama_omur_ve_yetiskin_boyut_egzotik", label: "Ortalama Ömür ve Yetişkin Boyut", tip: "text", ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "elde_tutma_etkilesim_seviyesi_egzotik", label: "Elle Tutma ve İnsanla Etkileşim Seviyesi/Tavsiyesi", tip: "select", secenekler: ["Elle Tutulmaya Uygun Değil/Stres Olur", "Sınırlı ve Dikkatli Elle Tutulabilir", "Düzenli ve Nazik Etkileşime Alışkın/İhtiyaç Duyar"], ai_importance: 0.75 }
+        - { alan_adi: "zehirlilik_saldirganlik_potansiyeli_egzotik", label: "Zehirlilik/Saldırganlık Potansiyeli ve Güvenlik Önlemleri", tip: "textarea", ai_importance: 0.9, zorunlu: false }
+        - { alan_adi: "kaynak_menşei_bilgisi_egzotik", label: "Hayvanın Kaynağı/Menşei", tip: "select_text_area", secenekler: ["Yasal Yollarla Üretim (Captive Bred - CB)", "Yasal Yollarla İthal Edilmiş", "Doğadan Toplanmış (Yasal İzinli - WC)", "Bilgim Yok/Belirsiz"], ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "mikrocip_durumu_egzotik", label: "Mikroçip Durumu", tip: "boolean_unknown", ai_importance: 0.65 }
+
+  - id: "animal_tur_diger"
+    ad: "Diğer (Çiftlik Hayvanları, Özel Durumlar)"
+    slug: "diger"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "hayvan_tur_diger", label: "Hayvan Türü (Detay)", tip: "text", ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "amac_diger", label: "Sahiplendirme/Satış Amacı", tip: "select", secenekler: ["Evcil Hayvan Olarak (Pet)", "Hobi Amaçlı Çiftlik Hayvanı", "Üretim Dışı (Emekli/Yaşlı)", "Terapi/Destek Hayvanı", "Çalışma Hayvanı (Eğitimli)", "Sadece Kurtarma/Geçici Yuva", "Diğer (Açıklama Gerekli)"], ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "yas_grubu_diger", label: "Yaş Grubu/Doğum Yılı", tip: "select_text", secenekler: ["Yavru/Civciv/Kuzu vb.", "Genç/Danak/Tay vb.", "Yetişkin", "Yaşlı/Emekli"], ai_importance: 0.7 }
+        - { alan_adi: "cinsiyet_diger", label: "Cinsiyet", tip: "select", secenekler: ["Erkek", "Dişi", "Kısırlaştırılmış Erkek", "Kısırlaştırılmış Dişi", "Bilinmiyor", "Sürü/Grup (Karışık Cinsiyet)"], ai_importance: 0.65 }
+        - { alan_adi: "adet_diger", label: "Adet/Sürü Büyüklüğü", tip: "number_integer_text", ai_importance: 0.6, zorunlu: false }
+        - { alan_adi: "renk_belirgin_ozellikler_diger", label: "Renk ve Belirgin Fiziksel Özellikler", tip: "tags_dynamic", secenekler_onerilen: ["Beyaz", "Siyah", "Kahverengi", "Alaca", "Benekli", "Çizgili", "Boynuzlu", "Boynuzsuz", "Sakallı", "Uzun Tüylü", "Kısa Tüylü", "İri Yapılı", "Küçük Yapılı", "Yara İzi", "Özel İşaret"], ai_importance: 0.7 }
+        - { alan_adi: "karakter_mizac_diger", label: "Karakter ve Mizaç Özellikleri", tip: "multiselect_from_tags", kaynak_etiket_kategorisi: "MIZAC_VE_KISILIK", ai_importance: 0.75 }
+        - { alan_adi: "saglik_durumu_genel_diger", label: "Genel Sağlık Durumu ve Aşı Bilgileri", tip: "select_aciklamali_textarea", secenekler_map: {"Sağlıklı (Bilinen sorunu yok)": false, "Aşıları Tam/Güncel": false, "Aşıları Eksik/Takip Gerekli": true, "Kronik Rahatsızlığı Var (Açıklama Gerekli)": true, "Özel Bakım/Diyet Gerektiriyor": true, "Kurtarılmış/Tedavi Sürecinde": true}, aciklama_label: "Sağlık Detayları, Aşılar ve Notlar", ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "bakim_deneyimi_sart_diger", label: "Bakım Deneyimi Şart Mı?", tip: "boolean_strict_unknown", secenekler: ["Evet, kesinlikle deneyim gerektirir", "Hayır, deneyimsiz kişiler de bakabilir (iyi araştırma ile)", "Belirtilmedi/Duruma Göre Değişir"], ai_importance: 0.8 }
+        - { alan_adi: "barinma_ihtiyaci_diger", label: "Barınma ve Yaşam Alanı İhtiyaçları", tip: "textarea_rich", ai_importance: 0.8, zorunlu: true }
+        - { alan_adi: "beslenme_diyet_diger", label: "Beslenme ve Diyet Bilgileri", tip: "textarea", ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "yasal_izin_belge_gerekliligi_diger", label: "Yasal İzin ve Belge Durumu", tip: "textarea_rich", ai_importance: 0.75, zorunlu: false }
+        - { alan_adi: "nakliye_tasima_durumu_diger", label: "Nakliye ve Taşıma Bilgileri", tip: "select_text_area", secenekler: ["Alıcı Tarafından Sağlanmalı", "Satıcı Tarafından Belirli Bir Ücret Karşılığı Sağlanabilir", "Yakın Çevreye Teslim Edilebilir", "Nakliye Konusunda Destek Olunur"], ai_importance: 0.6, zorunlu: false }
+        - { alan_adi: "sahiplendirme_satış_fiyati_kosullari_diger", label: "Sahiplendirme/Satış Fiyatı ve Koşulları", tip: "text_price_custom_textarea", ai_importance: 0.7, zorunlu: false }
+        - { alan_adi: "ek_bilgiler_hikaye_diger", label: "Ek Bilgiler ve Hayvanın Hikayesi", tip: "textarea_rich", ai_importance: 0.6, zorunlu: false }
+        - { alan_adi: "mikrocip_kula_kupe_numarasi_diger", label: "Mikroçip / Kulağı Küpe Numarası (Varsa)", tip: "text", ai_importance: 0.7 }
