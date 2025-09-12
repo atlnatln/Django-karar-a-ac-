@@ -1,0 +1,140 @@
+ticari_ilan_kategorileri:
+  - id: "cat_ticari_uretici_yetistirici"
+    ad: "Profesyonel Üreticiler ve Yetiştiriciler"
+    slug: "profesyonel-uretici-yetistirici"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "uretici_ana_faaliyet_alani_uretici", label: "Ana Faaliyet Alanınız", tip: "select", secenekler: ["Evcil Hayvan Yetiştiriciliği (Breeder/Kennel/Cattery)", "Evcil Hayvan Maması Üretimi", "Evcil Hayvan Aksesuarı/Ekipmanı Üretimi", "Evcil Hayvan Bakım Ürünü Üretimi", "Diğer (Belirtiniz)"], ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "yetistirilen_hayvan_turu_uretici", label: "Yetiştirilen Hayvan Türü", tip: "multiselect_from_tags", kaynak_etiket_kategorisi: "HAYVAN_TURU", bagimli_alan_goster: "uretici_ana_faaliyet_alani_uretici", bagimli_degerler_goster: ["Evcil Hayvan Yetiştiriciliği (Breeder/Kennel/Cattery)"], ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "yetistirilen_irklar_cinsler_uretici", label: "Uzmanlaşılan Irklar/Cinsler", tip: "multiselect_text_tags_suggestion_api", kaynak_model_tahmini: "IrkCinsVeritabaniAPI", bagimli_alan_goster: "uretici_ana_faaliyet_alani_uretici", bagimli_degerler_goster: ["Evcil Hayvan Yetiştiriciliği (Breeder/Kennel/Cattery)"], ai_importance: 0.8 }
+        - { alan_adi: "soy_kutugu_secere_kaydi_durumu_uretici", label: "Soy Kütüğü/Secere Kaydı Durumu", tip: "select_text_area", secenekler: ["Evet, tüm yavrular ulusal/uluslararası federasyonlara kayıtlıdır", "Evet, bazı yavrular/ebeveynler kayıtlıdır", "Hayır, kayıt yapılmamaktadır", "Bilgi Yok/İsteğe Bağlı"], bagimli_alan_goster: "uretici_ana_faaliyet_alani_uretici", bagimli_degerler_goster: ["Evcil Hayvan Yetiştiriciliği (Breeder/Kennel/Cattery)"], ai_importance: 0.75 }
+        - { alan_adi: "saglik_tarama_ve_genetik_test_uygulamalari_uretici", label: "Sağlık Taramaları ve Genetik Test Uygulamaları", tip: "textarea_rich", bagimli_alan_goster: "uretici_ana_faaliyet_alani_uretici", bagimli_degerler_goster: ["Evcil Hayvan Yetiştiriciliği (Breeder/Kennel/Cattery)"], ai_importance: 0.9 }
+        - { alan_adi: "yetistirme_kosullari_ve_felsefesi_uretici", label: "Yetiştirme Koşulları ve Felsefesi", tip: "textarea_rich", bagimli_alan_goster: "uretici_ana_faaliyet_alani_uretici", bagimli_degerler_goster: ["Evcil Hayvan Yetiştiriciliği (Breeder/Kennel/Cattery)"], ai_importance: 0.8 }
+        - { alan_adi: "yavru_teslim_sartlari_ve_destek_uretici", label: "Yavru Teslim Şartları ve Sonrası Destek", tip: "textarea_rich", bagimli_alan_goster: "uretici_ana_faaliyet_alani_uretici", bagimli_degerler_goster: ["Evcil Hayvan Yetiştiriciliği (Breeder/Kennel/Cattery)"], ai_importance: 0.85 }
+        - { alan_adi: "urun_hedef_hayvan_turu_uretici", label: "Ürünlerin Hedeflediği Hayvan Türü/Türleri", tip: "multiselect_from_tags", kaynak_etiket_kategorisi: "HAYVAN_TURU", bagimli_alan_goster: "uretici_ana_faaliyet_alani_uretici", ai_importance: 0.8 }
+        - { alan_adi: "ana_urun_kategorileri_ve_cesitleri_uretici", label: "Ana Ürün Kategorileri ve Çeşitleri", tip: "textarea_tags", bagimli_alan_goster: "uretici_ana_faaliyet_alani_uretici", ai_importance: 0.75 }
+        - { alan_adi: "urun_icerik_malzeme_kalitesi_vurgulari_uretici", label: "Ürün İçerik/Malzeme Kalitesi ve Öne Çıkan Özellikler", tip: "textarea_rich", bagimli_alan_goster: "uretici_ana_faaliyet_alani_uretici", ai_importance: 0.85 }
+        - { alan_adi: "uretim_standartlari_ve_teknolojileri_uretici", label: "Üretim Standartları ve Kullanılan Teknolojiler", tip: "textarea", bagimli_alan_goster: "uretici_ana_faaliyet_alani_uretici", ai_importance: 0.7 }
+        - { alan_adi: "marka_adi_resmi_uretici", label: "Marka Adınız / İşletme Adınız", tip: "text", ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "kurulus_yili_deneyim_suresi_uretici", label: "Kuruluş Yılı / Sektördeki Deneyim Süresi", tip: "number_year_text", ai_importance: 0.6 }
+        - { alan_adi: "sertifikasyonlar_uyelikler_belgeler_uretici", label: "Sahip Olunan Sertifikasyonlar, Üyelikler ve Resmi Belgeler", tip: "multiselect_from_tags_upload", kaynak_etiket_kategorisi: "TICARI_ILAN", ai_importance: 0.8 }
+        - { alan_adi: "uretim_tesisi_veya_yetistirme_yeri_konumu_uretici", label: "Üretim Tesisi / Yetiştirme Yeri Konumu", tip: "location_text_city_district_country", ai_importance: 0.7, zorunlu: true }
+        - { alan_adi: "dagitim_kanallari_ve_satis_noktalari_uretici", label: "Dağıtım Kanalları ve Satış Noktaları", tip: "multiselect_text_tags", secenekler_onerilen: ["Türkiye Geneli Distribütör Ağı", "Online Satış (Kendi Web Sitesi)", "Pazaryerleri (Trendyol, Hepsiburada vb.)", "Petshop Zincirleri", "Veteriner Klinikleri", "Bölgesel Bayiler", "İhracat"], ai_importance: 0.65 }
+        - { alan_adi: "b2b_b2c_satis_odagi_uretici", label: "Satış Odağı (B2B / B2C)", tip: "multiselect", secenekler: ["B2B (İşletmeden İşletmeye - Toptan Satış)", "B2C (İşletmeden Tüketiciye - Perakende Satış)"], ai_importance: 0.7 }
+        - { alan_adi: "minimum_siparis_kosullari_toptan_uretici", label: "Minimum Sipariş Koşulları (Toptan Satış/B2B İçin)", tip: "textarea", bagimli_alan_goster: "b2b_b2c_satis_odagi_uretici", bagimli_degerler_goster: ["B2B (İşletmeden İşletmeye - Toptan Satış)"], ai_importance: 0.5 }
+        - { alan_adi: "referanslar_ve_is_birlikleri_uretici", label: "Referanslar, İş Birlikleri ve Müşteri Yorumları", tip: "textarea_url_list", ai_importance: 0.7 }
+        - { alan_adi: "fiyat_araligi_ve_kalite_segmenti_uretici", label: "Ürün/Hizmet Fiyat Aralığı ve Kalite Segmenti", tip: "select_text", secenekler: ["Ekonomik Segment", "Orta Segment", "Orta-Üst Segment", "Premium Segment", "Lüks Segment"], ai_importance: 0.6 }
+        - { alan_adi: "etik_uretim_hayvan_refahi_politikasi_beyani_uretici", label: "Etik Üretim ve Hayvan Refahı Politikası Beyanı", tip: "textarea_rich_file_upload_optional", ai_importance: 0.85 }
+        - { alan_adi: "iletisim_ve_destek_kanallari_uretici", label: "Müşteri İletişim ve Destek Kanalları", tip: "textarea_multivalue", ai_importance: 0.7, zorunlu: true }
+
+  - id: "cat_ticari_ev_uretimi_hobi_yetistirici"
+    ad: "Ev Ortamında Sorumlu Hobi Yetiştiriciliği"
+    slug: "sorumlu-ev-uretimi-hobi-yetistiriciligi"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "yetistirilen_hayvan_turu_ev_uretimi", label: "Yetiştirilen Hayvan Türü", tip: "select_from_tags", kaynak_etiket_kategorisi: "HAYVAN_TURU", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "yetistirilen_irk_cins_ev_uretimi", label: "Yetiştirilen Irk/Cins", tip: "text_suggestion_api", kaynak_model_tahmini: "IrkCinsVeritabaniAPI", ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "yetistiricilik_felsefesi_ve_amaci_ev_uretimi", label: "Yetiştiricilik Felsefeniz ve Amacınız", tip: "textarea_rich", ai_importance: 0.8 }
+        - { alan_adi: "ebeveyn_hayvan_sayisi_ve_bilgileri_ev_uretimi", label: "Ebeveyn Hayvan Sayısı ve Bilgileri", tip: "textarea_numeric_limited", ai_importance: 0.75 }
+        - { alan_adi: "yillik_dogum_sayisi_planlamasi_ev_uretimi", label: "Yıllık Ortalama Doğum Sayısı Planlaması", tip: "select_numeric_range", secenekler: ["Yılda 1 Doğum", "Yılda 1-2 Doğum (Nadiren)", "Çok Sınırlı / Düzensiz"], ai_importance: 0.7 }
+        - { alan_adi: "ebeveyn_saglik_tarama_ve_genetik_testler_ev_uretimi", label: "Ebeveyn Hayvanların Sağlık Taramaları ve Genetik Testleri", tip: "multiselect_from_tags_upload", kaynak_etiket_kategorisi: "SAGLIK_VE_BAKIM", ai_importance: 0.9 }
+        - { alan_adi: "yavrularin_buyutuldugu_ortam_ev_uretimi", label: "Yavruların Büyütüldüğü Ortam ve Koşullar", tip: "textarea_rich_photo_upload_optional", ai_importance: 0.85 }
+        - { alan_adi: "yavrularin_sosyallesme_programi_ev_uretimi", label: "Yavruların Sosyalleşme Programı", tip: "textarea_rich", ai_importance: 0.8 }
+        - { alan_adi: "yavru_teslim_yasi_ve_kosullari_ev_uretimi", label: "Yavru Teslim Yaşı ve Koşulları", tip: "select_text_area", secenekler: ["En Az 8 Haftalık (Köpek/Kedi)", "En Az 10-12 Haftalık (Irka ve Gelişime Göre)", "Diğer (Açıklayınız)"], ai_importance: 0.85, zorunlu: true }
+        - { alan_adi: "yeni_sahiplere_sunulan_destek_ve_bilgilendirme_ev_uretimi", label: "Yeni Sahiplere Sunulan Destek ve Bilgilendirme", tip: "textarea", ai_importance: 0.75 }
+        - { alan_adi: "yetistiricilik_deneyimi_ve_referanslar_ev_uretimi", label: "Yetiştiricilik Deneyimi ve Referanslar (İsteğe Bağlı)", tip: "textarea_url_list", ai_importance: 0.6 }
+        - { alan_adi: "fiyatlandirma_politikasi_ve_neleri_kapsadigi_ev_uretimi", label: "Fiyatlandırma Politikası ve Neleri Kapsadığı", tip: "textarea_numeric_currency", para_birimi: "TRY", ai_importance: 0.8, zorunlu: true }
+        - { alan_adi: "ziyaret_ve_tanisma_politikasi_ev_uretimi", label: "Ebeveynleri ve Yavruları Ziyaret Politikası", tip: "select_text_area", secenekler: ["Evet, randevu ile ziyaret kabul ediyorum", "Evet, belirli bir aşamadan sonra (örn: yavrular 4-5 haftalık olduktan sonra)", "Hayır, sağlık nedenleriyle sınırlı/ziyaret yok (video görüşme vb. alternatifler sunulur)", "Görüşülür"], ai_importance: 0.7 }
+
+  - id: "cat_ticari_ithalat"
+    ad: "İthalat / Yurt Dışı Tedarik ve Aracılık"
+    slug: "ithalat-yurt-disi-tedarik-aracilik"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "ithalat_hizmet_kapsami_ithalat", label: "Sunulan İthalat Hizmeti/Ürün Kapsamı", tip: "multiselect", secenekler: ["Canlı Hayvan İthalatı (Belirli Türler)", "Evcil Hayvan Maması İthalatı", "Evcil Hayvan Aksesuarı/Ekipmanı İthalatı", "İthalat Danışmanlığı ve Belgelendirme Hizmetleri", "Uluslararası Nakliye ve Lojistik Çözümleri"], ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "ithal_edilen_hayvan_turleri_ithalat", label: "İthal Edilen Hayvan Türleri (Canlı Hayvan ise)", tip: "multiselect_from_tags", kaynak_etiket_kategorisi: "HAYVAN_TURU", bagimli_alan_goster: "ithalat_hizmet_kapsami_ithalat", bagimli_degerler_goster: ["Canlı Hayvan İthalatı (Belirli Türler)"], ai_importance: 0.85 }
+        - { alan_adi: "ithal_edilen_urun_kategorileri_ithalat", label: "İthal Edilen Ürün Kategorileri (Ürün ise)", tip: "textarea_tags", bagimli_alan_goster: "ithalat_hizmet_kapsami_ithalat", bagimli_degerler_goster: ["Evcil Hayvan Maması İthalatı", "Evcil Hayvan Aksesuarı/Ekipmanı İthalatı"], ai_importance: 0.8 }
+        - { alan_adi: "kaynak_ulkeler_ithalat", label: "Ana Kaynak Ülkeler/Bölgeler", tip: "multiselect_text_tags", secenekler_onerilen: ["Avrupa Birliği Ülkeleri", "ABD", "Kanada", "Rusya", "Ukrayna", "Güney Amerika Ülkeleri (Belirli)", "Asya Ülkeleri (Belirli)", "Avustralya/Yeni Zelanda"], ai_importance: 0.7 }
+        - { alan_adi: "CITES_ve_yasal_belgelendirme_uzmanligi_ithalat", label: "CITES ve Yasal Belgelendirme Uzmanlığı", tip: "select_aciklamali_file_upload_optional", secenekler_map: {"Evet, tam kapsamlı uzmanlık ve destek sunulur (CITES Ek I, II, III ve diğer tüm yasal prosedürler)":true, "Evet, belirli türler/belgeler için destek sunulur (Açıklayınız)":true, "Hayır, bu konuda genel yönlendirme yapılır":false, "Bu hizmet kapsamında değil/Gerekmiyor":false}, ai_importance: 0.95, zorunlu: true }
+        - { alan_adi: "referans_ve_basari_hikayeleri_ithalat", label: "Referanslar ve Başarılı İthalat Örnekleri", tip: "textarea_url_list", ai_importance: 0.75 }
+        - { alan_adi: "ortalama_surec_suresi_ve_maliyet_bilgisi_ithalat", label: "Ortalama Süreç Süresi ve Tahmini Maliyet Aralığı", tip: "textarea", ai_importance: 0.6 }
+        - { alan_adi: "firma_deneyimi_ve_akreditasyonlar_ithalat", label: "Firma Deneyimi ve Akreditasyonlar", tip: "text_file_upload_optional", ai_importance: 0.8 }
+        - { alan_adi: "sunulan_garanti_ve_sigorta_kosullari_ithalat", label: "Sunulan Garanti ve Sigorta Koşulları", tip: "textarea", ai_importance: 0.7 }
+
+  - id: "cat_ticari_talep"
+    ad: "Talep İlanı / Özel İstek Bildirimi"
+    slug: "talep-ilani-ozel-istek"
+    akilli_filtreler:
+      ozel_filtre_alanlari:
+        - { alan_adi: "talep_turu_talep", label: "Talep Türü", tip: "select", secenekler: ["Hayvan Arayışı", "Ürün Arayışı", "Hizmet Arayışı", "Özel Üretim Talebi", "İşbirliği/Partnerlik Talebi"], ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "aranan_hayvan_tur_irk_talep", label: "Aranan Hayvan Türü/Irkı (Hayvan Arayışı ise)", tip: "text_suggestion_api", kaynak_model_tahmini: "IrkCinsVeritabaniAPI", bagimli_alan_goster: "talep_turu_talep", bagimli_degerler_goster: ["Hayvan Arayışı"], ai_importance: 0.85 }
+        - { alan_adi: "aranan_urun_adi_kategori_talep", label: "Aranan Ürün Adı/Kategorisi (Ürün Arayışı ise)", tip: "text", bagimli_alan_goster: "talep_turu_talep", bagimli_degerler_goster: ["Ürün Arayışı", "Özel Üretim Talebi"], ai_importance: 0.8 }
+        - { alan_adi: "aranan_hizmet_turu_detay_talep", label: "Aranan Hizmet Türü ve Detayları (Hizmet Arayışı ise)", tip: "textarea", bagimli_alan_goster: "talep_turu_talep", bagimli_degerler_goster: ["Hizmet Arayışı"], ai_importance: 0.75 }
+        - { alan_adi: "talep_aciliyeti_talep", label: "Talep Aciliyeti", tip: "select", secenekler: ["Çok Acil (1-3 gün içinde çözüm bekleniyor)", "Acil (1 Hafta İçinde çözüm bekleniyor)", "Makul Süre (1 Ay İçinde)", "Belirli Bir Tarihe Kadar (Açıklayınız)", "Aciliyeti Yok, Araştırıyorum"], ai_importance: 0.7 }
+        - { alan_adi: "istenilen_ozellikler_detay_talep", label: "İstenilen Özellikler/Detaylar", tip: "textarea_rich", ai_importance: 0.9, zorunlu: true }
+        - { alan_adi: "butce_araligi_talep", label: "Bütçe Aralığı (Opsiyonel)", tip: "text_price_range", para_birimi: "TRY", ai_importance: 0.6 }
+        - { alan_adi: "konum_tercihi_talep", label: "Konum Tercihi (Şehir/Bölge)", tip: "location_text_city_district_country_multiple", ai_importance: 0.65 }
+        - { alan_adi: "iletisim_tercihi_talep", label: "Tercih Edilen İletişim Yöntemi", tip: "select", secenekler: ["Platform Mesajı (Önerilir)", "Telefon (Doğrulanmış Kullanıcılar İçin)", "E-posta"], ai_importance: 0.5, zorunlu: true }
+
+  - id: "cat_ticari_evsahibisatisi"
+    ad: "Ev Sahibi Sahiplendirmesi / Kişisel Zorunluluk"
+    slug: "ev-sahibi-sahiplendirmesi-kisisel-zorunluluk"
+    akilli_filtreler:
+      ozel_filtre_alanlari_gruplu:
+        satis_gerekce_grubu:
+          grup_basligi: "Sahiplendirme Nedeni ve Motivasyon"
+          alanlar:
+            - { alan_adi: "sahiplendirme_nedeni_ess", label: "Sahiplendirme Nedeni", tip: "select", zorunlu: true, secenekler: ["Taşınma (Şehir/Ülke Değişikliği)", "Ekonomik Koşulların Değişmesi", "Sağlık Sorunları (Sahip veya Hayvan)", "Aile Büyüklüğünde Değişiklik (Bebek, Yeni Evlilik vb.)", "Alerji Durumları", "Hayvanın Diğer Ev Hayvanlarıyla Uyumsuzluğu", "Sahibin Yeterli Zaman Ayıramaması", "Davranış Sorunları (Profesyonel Destek Alınmasına Rağmen Çözülemeyen)", "Sahibin Vefatı/Bakım Veremeyecek Duruma Gelmesi", "Diğer (Lütfen Açıklayınız)"], ai_importance: 0.95 }
+            - { alan_adi: "neden_detay_aciklama_ess", label: "Nedeninizi Detaylandırır mısınız?", tip: "textarea_rich", zorunlu: true, ai_importance: 0.9 }
+            - { alan_adi: "alternatif_cozum_denendi_mi_ess", label: "Başka Çözümler Aradınız mı?", tip: "radio", secenekler: ["Evet, denedim ama sonuç alamadım", "Hayır, bu ilk ve son çarem", "Kısmen, bazılarını denedim"], ai_importance: 0.7 }
+        hayvan_gecmis_grubu:
+          grup_basligi: "Hayvanın Geçmişi ve Mevcut Durumu"
+          alanlar:
+            - { alan_adi: "hayvan_adi_ess", label: "Hayvanın Adı", tip: "text", zorunlu: true, ai_importance: 0.8 }
+            - { alan_adi: "hayvan_turu_ess", label: "Türü", tip: "select_from_tags", kaynak_etiket_kategorisi: "HAYVAN_TURU", zorunlu: true, ai_importance: 0.9 }
+            - { alan_adi: "hayvan_irki_ess", label: "Irkı (Safkan veya Kırma ise Belirtin)", tip: "text", zorunlu: true, ai_importance: 0.85 }
+            - { alan_adi: "hayvan_yasi_dogum_tarihi_ess", label: "Yaşı / Doğum Tarihi", tip: "text_date_flexible", zorunlu: true, ai_importance: 0.9 }
+            - { alan_adi: "hayvan_cinsiyeti_ess", label: "Cinsiyeti", tip: "radio", secenekler_kaynagi: "PetGenders", zorunlu: true, ai_importance: 0.8 }
+            - { alan_adi: "hayvan_kisirlik_durumu_ess", label: "Kısırlık Durumu", tip: "radio", secenekler: ["Kısırlaştırılmış", "Kısırlaştırılmamış", "Bilgim Yok"], zorunlu: true, ai_importance: 0.85 }
+            - { alan_adi: "hayvan_nereden_edinildi_ess", label: "Hayvanı Nasıl Edindiniz?", tip: "select", secenekler: ["Sokaktan Kurtarma", "Barınaktan Sahiplenme", "Arkadaş/Akrabadan", "Petshoptan Alındı", "Yetiştiriciden Alındı", "Doğumundan Beri Benimle", "Diğer (Açıklayınız)"], zorunlu: true, ai_importance: 0.7 }
+            - { alan_adi: "hayvan_ne_kadardir_sizinle_ess", label: "Ne Kadardır Sizinle Birlikte?", tip: "text", zorunlu: true, ai_importance: 0.75 }
+        karakter_davranis_grubu:
+          grup_basligi: "Karakter ve Davranış Özellikleri"
+          alanlar:
+            - { alan_adi: "hayvan_karakteri_genel_ess", label: "Genel Karakteri", tip: "multiselect_from_tags", kaynak_etiket_kategorisi: "MIZAC_VE_KISILIK", zorunlu: true, ai_importance: 0.9 }
+            - { alan_adi: "insanlarla_iliskisi_ess", label: "İnsanlarla İlişkisi (Yetişkin, Çocuk, Yabancı)", tip: "textarea", zorunlu: true, ai_importance: 0.85 }
+            - { alan_adi: "diger_hayvanlarla_iliskisi_ess", label: "Diğer Hayvanlarla İlişkisi (Kedi, Köpek, Diğer)", tip: "textarea", zorunlu: true, ai_importance: 0.8 }
+            - { alan_adi: "tuvalet_aliskanligi_ess", label: "Tuvalet Alışkanlığı", tip: "select", secenekler: ["Kum Kullanıyor (Kedi)", "Dışarıya Yapıyor (Köpek)", "Ped Kullanıyor", "Eğitimi Var Ama Bazen Kazalar Oluyor", "Eğitimi Yok/Yeniden Alışması Gerekir"], zorunlu: true, ai_importance: 0.85 }
+            - { alan_adi: "yalniz_kalma_durumu_ess", label: "Yalnız Kalma Durumu", tip: "textarea", zorunlu: false, ai_importance: 0.7 }
+            - { alan_adi: "tasma_gezdirme_aliskanligi_kopek_ess", label: "Tasma ve Gezdirme Alışkanlığı (Köpek ise)", tip: "textarea", zorunlu: false, ai_importance: 0.7 }
+            - { alan_adi: "bilinen_komutlar_oyunlar_ess", label: "Bildiği Komutlar / Sevdiği Oyunlar", tip: "textarea", zorunlu: false, ai_importance: 0.6 }
+        saglik_bakim_grubu:
+          grup_basligi: "Sağlık ve Bakım Bilgileri"
+          alanlar:
+            - { alan_adi: "hayvan_asi_durumu_ess", label: "Aşıları", tip: "multiselect_from_tags_upload", kaynak_etiket_kategorisi: "SAGLIK_VE_BAKIM", zorunlu: true, ai_importance: 0.9 }
+            - { alan_adi: "hayvan_saglik_gecmisi_ess", label: "Bilinen Kronik Hastalığı / Alerjisi / Özel Durumu", tip: "textarea_file_upload_optional", zorunlu: false, ai_importance: 0.85 }
+            - { alan_adi: "hayvan_kullandigi_ilac_mama_ess", label: "Düzenli Kullandığı İlaç veya Özel Mama", tip: "text", zorunlu: false, ai_importance: 0.7 }
+            - { alan_adi: "hayvan_veteriner_bilgileri_ess", label: "Veteriner Hekim Bilgileri (Opsiyonel)", tip: "text", zorunlu: false, ai_importance: 0.5 }
+            - { alan_adi: "hayvan_fotograflari_videolari_ess", label: "Hayvanın Güncel Fotoğrafları ve Videoları", tip: "multiple_file_upload_with_preview_guidance", zorunlu: true, kurallar: {min_fotograf: 3, max_fotograf: 10, onerilen_video_suresi_saniye: 60}, ai_importance: 0.95 }
+        sahiplendirme_sartlari_grubu:
+          grup_basligi: "Sahiplendirme Şartları ve Süreci"
+          alanlar:
+            - { alan_adi: "sahiplendirme_ucreti_talebi_ess", label: "Sahiplendirme Ücreti Talebi", tip: "text_price_custom", zorunlu: true, ai_importance: 0.8 }
+            - { alan_adi: "sahiplendirme_sozlesmesi_yapilacak_mi_ess", label: "Sahiplendirme Sözleşmesi Yapılacak mı?", tip: "radio", secenekler: ["Evet, yapılacak (Platform şablonu kullanılabilir)", "Hayır, yapılmayacak", "Karşılıklı görüşülerek karar verilecek"], zorunlu: true, ai_importance: 0.75 }
+            - { alan_adi: "takip_sarti_var_mi_ess", label: "Yeni Evinde Takip Şartı", tip: "radio", secenekler: ["Evet, belirli aralıklarla (fotoğraf/video/ziyaret)", "Hayır, güveneceğim", "Görüşülür"], ai_importance: 0.7 }
+            - { alan_adi: "yeni_sahip_ile_tanisma_sureci_ess", label: "Yeni Sahip Adayı ile Tanışma Süreci Nasıl Olacak?", tip: "textarea", zorunlu: true, ai_importance: 0.8 }
+        yeni_sahip_tercihleri_grubu:
+          grup_basligi: "Yeni Sahip İçin Tercihleriniz (Varsa)"
+          alanlar:
+            - { alan_adi: "yeni_sahip_deneyim_tercihi_ess", label: "Deneyim Seviyesi", tip: "select", secenekler: ["Deneyimli Sahip Tercih Edilir", "İlk Kez Hayvan Sahiplenecekler İçin Uygun", "Farketmez, Önemli Olan Sevgi ve Sorumluluk", "Özel Irk/Durum Deneyimi Gerekli"], zorunlu: false, ai_importance: 0.6 }
+            - { alan_adi: "yeni_sahip_yasam_kosulu_tercihi_ess", label: "Yaşam Koşulları", tip: "textarea", zorunlu: false, ai_importance: 0.5 }
+        duygusal_pratik_grubu:
+          grup_basligi: "Duygusal ve Pratik Detaylar"
+          alanlar:
+            - { alan_adi: "hayvanla_vedalasma_ess", label: "Hayvanla Vedalaşma ve Geçiş Süreci Planınız", tip: "textarea", zorunlu: false, ai_importance: 0.6 }
+            - { alan_adi: "yeni_sahibe_verilecek_esyalar_ess", label: "Hayvanla Birlikte Verilecek Eşyalar", tip: "text_tags", zorunlu: false, ai_importance: 0.5 }
+        iletisim_surec_grubu:
+          grup_basligi: "İletişim ve Görüşme Süreci"
+          alanlar:
+            - { alan_adi: "tercih_edilen_iletisim_yontemi_ess", label: "Tercih Edilen İletişim Yöntemi", tip: "select", secenekler: ["Platform Üzerinden Mesaj (Önerilir)", "Telefon Numarası (Doğrulanmış ve İzinli)", "E-posta (Doğrulanmış ve İzinli)"], zorunlu: true, ai_importance: 0.7 }
+            - { alan_adi: "uygun_gorusme_zamanlari_ess", label: "Görüşme İçin Uygun Zaman Dilimleri", tip: "text", zorunlu: false, ai_importance: 0.4 }
