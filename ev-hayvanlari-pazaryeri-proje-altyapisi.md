@@ -78,3 +78,74 @@ Kullanıcılar kayıt olur. İki tip ilan:
 - Notification yazımı DB’de single source-of-truth olacak,
 - WebSocket/real-time push, e-posta queue ve opsiyonel push notification kanalları için publisher/subscriber pattern ile dağıtım,
 - Her bildirim için teslimat durumu (queued/sent/failed) ve retry mantığı olacak.
+
+**Dizin yapısı** Bu dosya, `apps/` dizini altındaki uygulama ve dokümantasyon klasörlerinin şemasını test ve referans amacıyla listeler
+Directory: apps/
+├── api/              
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the api app
+├── arama/            
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the arama app
+├── audit/            
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the audit app
+├── authn/            
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the authn app
+├── basvurular/       
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the basvurular app
+├── bff/              
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the bff app
+├── bildirimler/      
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the bildirimler app
+├── blog/             
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the blog app
+├── etiketler/        
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the etiketler app
+├── favoriler/        
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the favoriler app
+├── hayvanlar/        
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the hayvanlar app
+├── ilanlar/          
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the ilanlar app
+├── kategoriler/      
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the kategoriler app
+├── kullanicilar/     
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the kullanicilar app
+├── medya/            
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the medya app
+├── mesajlasma/       
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the mesajlasma app
+├── moderation/       
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the moderation app
+├── ortak/            
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the ortak app
+├── packages/         
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the packages app
+├── payments/         
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the payments app
+├── raporlar/         
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the raporlar app
+├── telegram_bot/     
+│   └── docs/
+│       └── kurallar.md    # Rules and documentation for the telegram_bot app
+└── __init__.py       
+
