@@ -1,3 +1,5 @@
+Proje
+
 İki özellikli (İlanlı satış + sahiplendirme) bir çevrimiçi ev hayvanları pazaryeri.
 
 Kullanıcılar kayıt olur. İki tip ilan:
@@ -49,7 +51,7 @@ Kullanıcılar kayıt olur. İki tip ilan:
 - Önemli meta, Open Graph, JSON-LD structured data her ilan detay sayfasına eklenecek.
 
 **Mimari:** Django ile tek veritabanı (monolitik + modüler yapı).  
-- Tüm uygulamalar mümkün olduğunca hazır bileşenler kullanılarak sağlanacak; özel kod minimumda tutulacak.  
+Tüm uygulamalar mümkün olduğunca hazır bileşenler kullanılarak sağlanacak; özel kod minimumda tutulacak.  
 **Güçlendirme:** Başlangıçta monolitik modüler yapı korunacak ancak her modülün dışa açık bir arayüzü (API / service interface) olacak; böylece:
 - ileride messaging, search, media gibi kritik parçalar ayrı servislerle değiştirilebilir,
 - bağımlılıklar açıkça tanımlı olduğundan refactor maliyeti düşer.
@@ -79,73 +81,105 @@ Kullanıcılar kayıt olur. İki tip ilan:
 - WebSocket/real-time push, e-posta queue ve opsiyonel push notification kanalları için publisher/subscriber pattern ile dağıtım,
 - Her bildirim için teslimat durumu (queued/sent/failed) ve retry mantığı olacak.
 
-**Dizin yapısı** Bu dosya, `apps/` dizini altındaki uygulama ve dokümantasyon klasörlerinin şemasını test ve referans amacıyla listeler
-Directory: apps/
+**Django sürümü:** en son 5.x uyumlu.
+
+---
+
+### İSTENİLENLER:
+
+- **Proje kök dizini ağacı (Türkçe dizin/adlar)** — her app için ana dosyalar ve önemli alt dizinler.
+- Her app için:
+  - Amaç (tek cümle).
+  - Kullanılacak ana bileşenlerin türü (kısa ve genel).
+  - Gerekli küçük özelleştirmeler (varsa, kısa maddeler).
+  - İlişkili DB tabloları / modeller (alan isimleri ve türleri, örnek ilişkiler).
+- Tek DB monolitik+modüler tablo listesi (app bazlı, tablolar ve ana alanlar, anahtar ilişkiler).
+- **Ek konfigürasyonlar/entegrasyonlar kısa listesi:**
+  - Google Workspace mail ayarları (kısa parametre adları).
+  - Facebook ve Google OAuth (kısa parametre adları ve account linking notları).
+  - Ödeme davranışı: dış link ile paket ödeme akışı + PaymentProvider/adapter soyutlaması (idempotency, click-tracking, admin manual confirmation).
+  - Telegram bot admin onayı için veri bütünlüğü ve kimlik doğrulama planı (imza/timestamp/nonce, admin id doğrulama, replay koruması).
+  - Medya için optimize ve erişim izin planı (upload pipeline, temp/quarantine, signed URLs, quotas, retention).
+  - Arama için incremental ve full reindex (signal -> enqueue -> background job; yönetim komutları; index aliasing stratejisi).
+  - SSR & Next.js BFF entegrasyonu: endpoint sözleşmeleri, auth/session paylaşımı, preview token, cache invalidation, idempotency, prod-ready test planı, HMAC doğrulama.
+  - Güvenlik & uyumluluk kısa notları: rate-limiting, CAPTCHA opsiyonu, CSRF, secure cookies, CSP, secrets yönetimi (env / secret manager), GDPR/KVKK uyumluluğu (data export & delete).
+  - Test ve CI kısa notu: telegram ve ödeme adapter'ları için mock/stub test harness; e2e test ortamı (DB, cache, search, mail stub) tanımlı olacak.
+- **SEO ve mobil hız için önerilen Django/ön yüz ayarları** (kısa maddeler):
+  - Ana sayfa ve ilan detayları server-side render (dinamik meta ve JSON-LD).
+  - Sitemap + robots, canonical, Open Graph, Twitter Card.
+  - Görüntüler responsive srcset, WebP/modern formatlar, lazy-loading.
+  - Static asset optimizasyon: minifikasyon, brotli/gzip, critical CSS inline.
+  - Cache: template fragment cache, HTTP cache headers, CDN/edge cache planı.
+  - Lighthouse hedefleri ve ölçüm adımları (LCP, CLS, TTFB).
+
+
+## Proje kök dizini ağacı (Türkçe dizin/adlar)
+```plaintext
+apps/
 ├── api/              
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the api app
+│       └── kurallar.md
 ├── arama/            
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the arama app
+│       └── kurallar.md
 ├── audit/            
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the audit app
+│       └── kurallar.md
 ├── authn/            
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the authn app
+│       └── kurallar.md
 ├── basvurular/       
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the basvurular app
+│       └── kurallar.md
 ├── bff/              
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the bff app
+│       └── kurallar.md
 ├── bildirimler/      
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the bildirimler app
+│       └── kurallar.md
 ├── blog/             
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the blog app
+│       └── kurallar.md
 ├── etiketler/        
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the etiketler app
+│       └── kurallar.md
 ├── favoriler/        
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the favoriler app
+│       └── kurallar.md
 ├── hayvanlar/        
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the hayvanlar app
+│       └── kurallar.md
 ├── ilanlar/          
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the ilanlar app
+│       └── kurallar.md
 ├── kategoriler/      
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the kategoriler app
+│       └── kurallar.md
 ├── kullanicilar/     
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the kullanicilar app
+│       └── kurallar.md
 ├── medya/            
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the medya app
+│       └── kurallar.md
 ├── mesajlasma/       
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the mesajlasma app
+│       └── kurallar.md
 ├── moderation/       
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the moderation app
+│       └── kurallar.md
 ├── ortak/            
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the ortak app
+│       └── kurallar.md
 ├── packages/         
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the packages app
+│       └── kurallar.md
 ├── payments/         
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the payments app
+│       └── kurallar.md
 ├── raporlar/         
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the raporlar app
+│       └── kurallar.md
 ├── telegram_bot/     
 │   └── docs/
-│       └── kurallar.md    # Rules and documentation for the telegram_bot app
+│       └── kurallar.md
 └── __init__.py       
-
