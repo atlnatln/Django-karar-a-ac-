@@ -1,0 +1,158 @@
+root: "Universal Django Factory"
+version: "3.0.0"
+meta:
+  description: "Combines decision tree packages with strict directory scaffolding rules."
+
+# ---------------------------------------------------------------------------
+# 1. KARAR AĞACI (TEKNİK MODÜLLER & PAKETLER)
+# ---------------------------------------------------------------------------
+nodes:
+  # A. MİMARİ TİPLER (Archetypes)
+  - id: arch_ecommerce_drf
+    label: "E-Commerce Architecture"
+    type: archetype
+    modules: ["auth_jwt", "api_drf", "pay_stripe", "queue_celery", "search_elastic"]
+  
+  - id: arch_cms_headless
+    label: "Headless CMS Architecture"
+    type: archetype
+    modules: ["cms_wagtail", "api_drf", "media_advanced"]
+
+  - id: arch_realtime_socket
+    label: "Realtime/Chat Architecture"
+    type: archetype
+    modules: ["auth_jwt", "realtime_channels", "db_redis"]
+
+  # B. FONKSİYONEL MODÜLLER (Packages from Markdown)
+  - id: auth_jwt
+    packages: ["djangorestframework-simplejwt", "django-cors-headers"]
+  
+  - id: api_drf
+    packages: ["djangorestframework", "drf-spectacular", "django-filter"]
+  
+  - id: cms_wagtail
+    packages: ["wagtail"]
+  
+  - id: pay_stripe
+    packages: ["dj-stripe", "stripe"]
+  
+  - id: queue_celery
+    packages: ["celery", "redis", "django-celery-beat"]
+  
+  - id: search_elastic
+    packages: ["django-elasticsearch-dsl", "django-elasticsearch-dsl-drf"]
+  
+  - id: realtime_channels
+    packages: ["channels", "daphne", "channels-redis"]
+  
+  - id: media_advanced
+    packages: ["django-storages", "boto3", "easy-thumbnails", "django-versatileimagefield"]
+
+# ---------------------------------------------------------------------------
+# 2. REPO BOOTSTRAPPER (DİZİN VE DOSYA İSKELETİ)
+# Sizin "Repo Bootstrapper" promptunuz buraya gömüldü.
+# ---------------------------------------------------------------------------
+directory_scaffolding:
+  root_path: "services/backend/"
+  
+  file_structure:
+    - path: "README.md"
+      purpose: "Backend Service Documentation"
+      content: |
+        # Backend Service
+        Type: Django {{ project_type }}
+        ## Setup
+        1. Copy .env.example to .env
+        2. Fill in CHANGEME values.
+        3. Run `docker-compose up`
+
+    - path: "requirements.txt"
+      purpose: "Dependencies"
+      content: |
+        django>=5.0
+        django-environ
+        psycopg[binary]
+        gunicorn
+        # Selected Modules:
+        {{ dynamic_packages_list }}
+        CHANGEME
+
+    - path: ".env.example"
+      purpose: "Secrets Template"
+      content: |
+        DEBUG=CHANGEME
+        SECRET_KEY=CHANGEME
+        DATABASE_URL=postgres://user:pass@db:5432/dbname
+        REDIS_URL=redis://redis:6379/0
+        # Module Specifics
+        {{ dynamic_env_vars }}
+
+    - path: "config/"
+      children:
+        - path: "settings/"
+          children:
+            - path: "__init__.py"
+            - path: "base.py"
+              purpose: "Base Settings"
+              content: |
+                import environ
+                from pathlib import Path
+                # ... base django settings ...
+                INSTALLED_APPS = [
+                    'django.contrib.admin',
+                    # ...
+                    # Dynamic Apps
+                    {{ dynamic_installed_apps }}
+                ]
+            - path: "dev.py"
+              purpose: "Dev Overrides"
+              content: "from .base import *\nDEBUG = True"
+            - path: "prod.py"
+              purpose: "Prod Hardening"
+              content: "from .base import *\nDEBUG = False"
+        - path: "urls.py"
+        - path: "wsgi.py"
+        - path: "asgi.py"
+        - path: "rules.yaml"
+          purpose: "Environment Rules"
+          content: "rules: { dev: lenient, prod: strict }"
+
+    - path: "apps/"
+      purpose: "Domain Logic Apps"
+      children:
+        - path: "users/"
+        - path: "core/"
+        - path: "{{ dynamic_domain_app_1 }}/" # e.g., products or blog
+        - path: "{{ dynamic_domain_app_2 }}/"
+
+    - path: "tests/"
+      children:
+        - path: "unit/"
+        - path: "integration/"
+        - path: "e2e/"
+        - path: "conftest.py"
+          content: "# Pytest fixtures\nimport pytest"
+        - path: "rules.yaml"
+          content: "coverage_min: 80"
+
+    - path: "docs/"
+      children:
+        - path: "ADR/"
+          children:
+            - path: "0000-template.md"
+              content: "# Title\nStatus: Proposed\nContext: CHANGEME"
+        - path: "API/"
+          children:
+            - path: "openapi.yaml"
+              content: "openapi: 3.0.0"
+        - path: "runbooks/"
+          children:
+            - path: "restore-db.md"
+              content: "# Database Restore Procedure\n1. CHANGEME"
+
+    - path: "infra/"
+      children:
+        - path: "docker/"
+          children:
+            - path: "Dockerfile"
+        - path: "ci-cd/"

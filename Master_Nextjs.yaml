@@ -1,0 +1,87 @@
+root: "Universal Next.js Factory"
+version: "3.0.0"
+
+# ---------------------------------------------------------------------------
+# 1. KARAR AĞACI
+# ---------------------------------------------------------------------------
+nodes:
+  - id: arch_storefront_ssr
+    label: "E-Commerce Storefront"
+    modules: ["auth_nextauth", "ui_shadcn", "fetch_server_actions", "state_zustand"]
+
+  - id: arch_content_static
+    label: "Content Site (Blog/News)"
+    modules: ["ui_tailwind", "content_mdx"]
+
+  - id: arch_social_app
+    label: "Social Platform"
+    modules: ["auth_nextauth", "ui_shadcn", "fetch_react_query", "realtime_pusher"]
+
+  # Packages Definition
+  - id: auth_nextauth
+    packages: ["next-auth@beta"]
+  - id: ui_shadcn
+    packages: ["tailwindcss-animate", "class-variance-authority", "lucide-react"]
+  - id: state_zustand
+    packages: ["zustand"]
+  - id: fetch_react_query
+    packages: ["@tanstack/react-query"]
+
+# ---------------------------------------------------------------------------
+# 2. REPO BOOTSTRAPPER (NEXT.JS İSKELETİ)
+# ---------------------------------------------------------------------------
+directory_scaffolding:
+  root_path: "services/frontend/"
+  
+  file_structure:
+    - path: "README.md"
+      content: "# Frontend Service (Next.js)\nRun `npm run dev`"
+    
+    - path: ".env.example"
+      content: |
+        NEXT_PUBLIC_API_URL=http://localhost:8000/api
+        AUTH_SECRET=CHANGEME
+        NEXTAUTH_URL=http://localhost:3000
+
+    - path: "src/"
+      children:
+        - path: "app/"
+          children:
+            - path: "(auth)/"
+              children:
+                - path: "login/page.tsx"
+                - path: "register/page.tsx"
+            - path: "(main)/"
+              children:
+                - path: "page.tsx"
+                - path: "layout.tsx"
+            - path: "api/"
+              purpose: "Route Handlers"
+              children:
+                - path: "auth/[...nextauth]/route.ts"
+        
+        - path: "components/"
+          children:
+            - path: "ui/" # Shadcn UI goes here
+            - path: "modules/" # Domain components
+        
+        - path: "lib/"
+          children:
+            - path: "utils.ts"
+            - path: "api-client.ts" # Axios or Fetch wrapper
+        
+        - path: "actions/"
+          purpose: "Server Actions"
+          content: "'use server'\n// Define server actions here"
+        
+        - path: "types/"
+          children:
+            - path: "api.d.ts" # Generated from Django OpenAPI
+
+    - path: "public/"
+    - path: "tests/"
+      children:
+        - path: "e2e/" # Playwright
+    - path: "next.config.js"
+    - path: "tailwind.config.ts"
+    - path: "package.json"

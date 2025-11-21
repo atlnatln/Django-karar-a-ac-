@@ -1,0 +1,63 @@
+root: "Universal React SPA Factory"
+version: "3.0.0"
+
+# ---------------------------------------------------------------------------
+# 1. KARAR AĞACI
+# ---------------------------------------------------------------------------
+nodes:
+  - id: arch_dashboard_b2b
+    label: "B2B Dashboard"
+    modules: ["router_react_router", "state_global", "ui_antd_or_mui", "form_complex"]
+  
+  - id: arch_media_player
+    label: "Media/Streaming Player"
+    modules: ["router_react_router", "state_global", "player_videojs"]
+
+  # Packages Definition
+  - id: router_react_router
+    packages: ["react-router-dom", "localforage"]
+  - id: state_global
+    packages: ["@reduxjs/toolkit", "react-redux"]
+  - id: form_complex
+    packages: ["react-hook-form", "zod", "@hookform/resolvers"]
+
+# ---------------------------------------------------------------------------
+# 2. REPO BOOTSTRAPPER (VITE/REACT İSKELETİ)
+# ---------------------------------------------------------------------------
+directory_scaffolding:
+  root_path: "services/dashboard/"
+  
+  file_structure:
+    - path: "README.md"
+      content: "# Dashboard Service (Vite)\nRun `npm run dev`"
+    
+    - path: ".env.example"
+      content: "VITE_API_URL=CHANGEME"
+
+    - path: "src/"
+      children:
+        - path: "assets/"
+        - path: "components/"
+        - path: "features/"
+          purpose: "Feature Sliced Design"
+          children:
+            - path: "auth/"
+            - path: "users/"
+            - path: "analytics/"
+        - path: "hooks/"
+        - path: "layouts/"
+        - path: "pages/"
+        - path: "services/"
+          purpose: "API Integration"
+          children:
+             - path: "api.ts"
+        - path: "store/"
+          purpose: "Global State"
+        - path: "App.tsx"
+        - path: "main.tsx"
+
+    - path: "tests/"
+      children:
+        - path: "unit/"
+    - path: "vite.config.ts"
+    - path: "package.json"

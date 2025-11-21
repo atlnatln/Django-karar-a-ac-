@@ -1,0 +1,66 @@
+{
+  "system_role": "Architectural Decision Record & Factory Orchestrator",
+  "version": "3.0.0",
+  "description": "Maps business domains (Website Types) to technical archetypes and directory structures.",
+  
+  "domain_taxonomy": {
+    "1_content_info": {
+      "subtypes": ["blog", "news", "portal", "wiki", "education"],
+      "technical_mapping": {
+        "backend": "Master_Django.yaml:arch_cms_headless",
+        "frontend": "Master_Nextjs.yaml:arch_content_static",
+        "features": ["search_engine", "caching_heavy"]
+      }
+    },
+    "2_corporate": {
+      "subtypes": ["corporate", "portfolio", "landing", "cv"],
+      "technical_mapping": {
+        "backend": "Master_Django.yaml:arch_minimal_api",
+        "frontend": "Master_Nextjs.yaml:arch_marketing_ssg",
+        "features": ["contact_form", "analytics"]
+      }
+    },
+    "3_commerce": {
+      "subtypes": ["ecommerce", "marketplace", "subscription", "classifieds"],
+      "technical_mapping": {
+        "backend": "Master_Django.yaml:arch_ecommerce_drf",
+        "frontend": "Master_Nextjs.yaml:arch_storefront_ssr",
+        "features": ["payments", "async_tasks", "auth_advanced"]
+      }
+    },
+    "4_community": {
+      "subtypes": ["forum", "social_network", "chat", "membership"],
+      "technical_mapping": {
+        "backend": "Master_Django.yaml:arch_realtime_socket",
+        "frontend": "Master_Nextjs.yaml:arch_social_app",
+        "features": ["websockets", "notifications", "media_handling"]
+      }
+    },
+    "5_media": {
+      "subtypes": ["video", "music", "gaming", "streaming"],
+      "technical_mapping": {
+        "backend": "Master_Django.yaml:arch_media_stream",
+        "frontend": "Master_React.yaml:arch_media_player",
+        "features": ["large_file_upload", "cdn_integration"]
+      }
+    },
+    "6_service": {
+      "subtypes": ["booking", "jobs", "health", "fintech"],
+      "technical_mapping": {
+        "backend": "Master_Django.yaml:arch_service_api",
+        "frontend": "Master_React.yaml:arch_dashboard_b2b",
+        "features": ["audit_logging", "complex_forms", "pdf_generation"]
+      }
+    },
+    "7_hybrid": {
+      "strategy": "merge_capabilities",
+      "logic": "Identify primary and secondary types. Merge backend modules. Frontend defaults to Next.js for unification."
+    }
+  },
+
+  "global_constraints": {
+    "directory_structure_mode": "scaffold_only",
+    "secrets_policy": "All secrets must be placeholders (CHANGEME) in .env.example",
+    "documentation_standard": "ADR + OpenAPI"
+  }
+}
